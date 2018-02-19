@@ -24,7 +24,7 @@ module.exports = {
 
         console.log("tables get called");
         //Get guests from Mongo DB
-        db.tables.find(function (err, tables) {
+        db.tablesTest.find(function (err, tables) {
             if (err) {
                 res.send(err);
             }
@@ -79,7 +79,7 @@ module.exports = {
         removeTablesRestaurant1024.removeTable(db, tableNumber, departmentValue, topValue, leftValue, height, width);
 
         setTimeout(function () {
-            db.tables.find(
+            db.tablesTest.find(
                 {
                     "department": departmentValue,
                 },
@@ -139,7 +139,7 @@ module.exports = {
         addTablesRestaurant1024.addTable(db, tableNumber, departmentValue, topValue, leftValue, height, width);
 
         setTimeout(function () {
-            db.tables.find(
+            db.tablesTest.find(
                 {
                     "department": departmentValue,
                 },
@@ -208,7 +208,7 @@ module.exports = {
             departmentValueDB = "Wintergarten";
         }
 
-        db.tables.update(
+        db.tablesTest.update(
             {
                 department: departmentValueDB,
                 "tables.number": tableValue
@@ -226,7 +226,7 @@ module.exports = {
             });
 
         setTimeout(function () {
-            db.tables.findOne(
+            db.tablesTest.findOne(
                 {
                     "department": departmentValueDB,
                     "tables.number": tableValue
@@ -244,60 +244,95 @@ module.exports = {
         }, 100);
     },
     dispenseTable: function (req, res, db) {
-
         console.log("dispenseTable request made to /dispenseTable");
         let dispenseTable = req.body;
         console.log(dispenseTable);
+        console.log(dispenseTable.group);
         console.log('dispenseTable.groups.length');
         //console.log(dispenseTable.groups.length);
         //console.log(dispenseTable.group );
-
-        console.log("dispenseTable" + JSON.stringify(dispenseTable));
+        //console.log("dispenseTable" + JSON.stringify(dispenseTable));
         if (dispenseTable.groups != null) {
-        if (dispenseTable.groups.length > 1 && (dispenseTable.group === 0 || dispenseTable.group)) {
-            console.log('11111111111111111');
-            db.tables.findAndModify({
-                query: {department: dispenseTable.department, "tables.number": dispenseTable.number,  },
-                update: {
-                     $unset: {
-                        ["tables.$.groups." + dispenseTable.group] : 1,
+            if (dispenseTable.group) {
+                for (let i = 0; i < dispenseTable.group.length; i++) {
+                    if (dispenseTable.groups.length > dispenseTable.group.length) {
+                        console.log("111111111111");
+                        db.tablesTest.findAndModify({
+                            query: {department: dispenseTable.department, "tables.number": dispenseTable.number},
+                            update: {
+                                $unset: {
+                                    ["tables.$.groups." + dispenseTable.group[i]]: 1,
+                                }
+                            },
+                            new: false
+                        }, function (err, tables) {
+                            if (err) {
+                                console.log("Error");
+                            }
+                            console.log("No Error");
+                        });
+                        setTimeout(function () {
+                            db.tablesTest.findAndModify({
+                                query: {department: dispenseTable.department, "tables.number": dispenseTable.number},
+                                update: {
+                                    $pull: {
+                                        "tables.$.groups": null
+                                    }
+                                },
+                                new: false
+                            }, function (err, tables) {
+                                if (err) {
+                                    console.log("Error");
+                                }
+                                console.log("No Error");
+                            });
+
+                        }, 100);
+                    } else if (dispenseTable.groups.length === dispenseTable.group.length) {
+                        db.tablesTest.findAndModify({
+                            query: {department: dispenseTable.department, "tables.number": dispenseTable.number},
+                            update: {
+                                $set: {
+                                    "tables.$.bgColor": "#ffffff",
+                                    "tables.$.isBesetzt": "false",
+                                }, $unset: {
+                                    ["tables.$.groups." + dispenseTable.group]: 1,
+                                }
+                            },
+                            new: false
+                        }, function (err, tables) {
+                            if (err) {
+                                console.log("Error");
+                            }
+                            console.log("No Error");
+                        });
                     }
-                },
-                new: false
-            }, function (err, tables) {
-                if (err) {
-                    console.log("Error");
+                    setTimeout(function () {
+                        db.tablesTest.findAndModify({
+                            query: {department: dispenseTable.department, "tables.number": dispenseTable.number,},
+                            update: {
+                                $pull: {
+                                    "tables.$.groups": null
+                                }
+                            },
+                            new: false
+                        }, function (err, tables) {
+                            if (err) {
+                                console.log("Error");
+                            }
+                            console.log("No Error");
+                        });
+                    }, 100);
                 }
-                console.log("No Error");
-            });
-            setTimeout(function () {
-            db.tables.findAndModify({
-                query: {department: dispenseTable.department, "tables.number": dispenseTable.number,  },
-                update: {
-                         $pull : {
-                             "tables.$.groups": null
-                         }
-
-            },
-                new: false
-            }, function (err, tables) {
-                if (err) {
-                    console.log("Error");
-                }
-                console.log("No Error");
-            });
-
-            }, 200);
-
-        } else if (dispenseTable.groups.length === 1 && (dispenseTable.group === 0 || dispenseTable.group)) {
-                db.tables.findAndModify({
+            } else {
+                db.tablesTest.findAndModify({
                     query: {department: dispenseTable.department, "tables.number": dispenseTable.number},
                     update: {
                         $set: {
                             "tables.$.bgColor": "#ffffff",
                             "tables.$.isBesetzt": "false",
                         }, $unset: {
-                            ["tables.$.groups." + dispenseTable.group] : 1,
+                            "tables.$.groups" : 1,
                         }
                     },
                     new: false
@@ -307,46 +342,9 @@ module.exports = {
                     }
                     console.log("No Error");
                 });
-            setTimeout(function () {
-
-                db.tables.findAndModify({
-                query: {department: dispenseTable.department, "tables.number": dispenseTable.number,  },
-                update: {
-                    $pull : {
-                        "tables.$.groups": null
-                    }
-
-                },
-                new: false
-            }, function (err, tables) {
-                if (err) {
-                    console.log("Error");
-                }
-                console.log("No Error");
-            });
-            }, 200);
-
-            } else {
-                db.tables.findAndModify({
-                    query: {department: dispenseTable.department, "tables.number": dispenseTable.number},
-                    update: {
-                        $set: {
-                            "tables.$.bgColor": "#ffffff",
-                            "tables.$.isBesetzt": "false",
-                        }, $unset: {
-                            "tables.$.groups" : 1,
-            }
-            },
-                new: false
-            }, function (err, tables) {
-                    if (err) {
-                        console.log("Error");
-                    }
-                    console.log("No Error");
-                });
             }
         } else {
-            db.tables.findAndModify({
+            db.tablesTest.findAndModify({
                 query: {department: dispenseTable.department, "tables.number": dispenseTable.number},
                 update: {
                     $set: {
@@ -366,7 +364,7 @@ module.exports = {
 
         }
         setTimeout(function () {
-            db.tables.find(
+            db.tablesTest.find(
                 {
                     department: dispenseTable.department,
                     "tables.number": dispenseTable.number
@@ -375,7 +373,7 @@ module.exports = {
                         res.send(err);
                     }
                     res.json(tables);
-                    console.log("Dispense Table: " + JSON.stringify(tables));
+                    //  console.log("Dispense Table: " + JSON.stringify(tables));
                 });
         }, 500);
 

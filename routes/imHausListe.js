@@ -164,9 +164,9 @@ module.exports = {
          //console.log('imHausListe' +  imHausListe);
          //imHausListe.data = req.body;
          */
-        db.imHausListe.remove({});
+        db.imHausListeTest.remove({});
         setTimeout(function () {
-            db.imHausListe.save(imHausListe, function (err, imHausListe) {
+            db.imHausListeTest.save(imHausListe, function (err, imHausListe) {
                 if (err) {
                     res.send(err);
                 }
@@ -198,7 +198,7 @@ module.exports = {
                 nameValueArray.push(informationElements.groups[i].nameValue);
                 zimmernummerValueArray.push(informationElements.groups[i].zimmernummerValue);
 
-                db.imHausListe.update(
+                db.imHausListeTest.update(
                     {
                         name: nameValueArray[i],
                         "zimmernummer": zimmernummerValueArray[i]
@@ -222,7 +222,7 @@ module.exports = {
             console.log(nameValueArray[0]);
             console.log(zimmernummerValueArray[0]);
 
-            db.imHausListe.update(
+            db.imHausListeTest.update(
                 {
                     name: nameValueArray[0],
                     "zimmernummer": zimmernummerValueArray[0]
@@ -240,7 +240,7 @@ module.exports = {
         }
 
         setTimeout(function () {
-            db.imHausListe.find(
+            db.imHausListeTest.find(
                 {},
                 function (err, imHausListe) {
                     if (err) {
@@ -256,7 +256,7 @@ module.exports = {
     getImHausListe: function (req, res, db) {
         console.log("imHausListe get called");
 //Get guests from Mongo DB
-        db.imHausListe.find(function (err, imHausListe) {
+        db.imHausListeTest.find(function (err, imHausListe) {
             if (err) {
                 res.send(err);
             }

@@ -37,7 +37,7 @@ module.exports = {
         console.log(req.body);
         let newInformation = req.body;
 
-        db.tables.update(
+        db.tablesTest.update(
             {
                 "tables.number": newInformation.tableNumber,
             },
@@ -60,7 +60,7 @@ module.exports = {
             });
 
         setTimeout(function () {
-            db.tables.findOne(
+            db.tablesTest.findOne(
                 {
                     "tables.number": newInformation.tableNumber
                 },

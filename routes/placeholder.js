@@ -15,7 +15,7 @@ module.exports = {
 
         //console.log(occupyTable);
 
-        db.tables.update(
+        db.tablesTest.update(
             {
                 department: addPlaceholder.department,
                 "tables.number": addPlaceholder.number
@@ -32,7 +32,7 @@ module.exports = {
             });
 
         setTimeout(function () {
-            db.tables.find(
+            db.tablesTest.find(
                 {
                     department: addPlaceholder.department,
                     "tables.number": addPlaceholder.number
@@ -99,7 +99,7 @@ module.exports = {
         //console.log(tableValue);
         //console.log(occupyTable);
 
-        db.tables.update(
+        db.tablesTest.update(
             {
                 department: departmentValueDB,
                 "tables.number": tableValue[0]
@@ -116,7 +116,7 @@ module.exports = {
             });
 
         setTimeout(function () {
-            db.tables.findOne(
+            db.tablesTest.findOne(
                 {
                     department: departmentValueDB,
                     "tables.number": tableValue[0]

@@ -1,7 +1,7 @@
 module.exports = {
     removeTable: function (db, tableNumber, departmentValue, topValue, leftValue, height, width) {
      if (tableNumber === '12' && topValue === '200' && leftValue === '30' && width === '90') {
-        db.tables.update(
+        db.tablesTest.update(
             {
                 department: departmentValue,
                 "tables.number": tableNumber
@@ -16,7 +16,7 @@ module.exports = {
                 }
                 console.log("moveTable Update successful");
             });
-         db.tables.update(
+         db.tablesTest.update(
              {
                  department: departmentValue,
              }, {
@@ -47,7 +47,7 @@ module.exports = {
                  console.log("addTable Update successful");
              });
     } else if (tableNumber === '12' && topValue === '200' && leftValue === '30' && width === '120') {
-        db.tables.update(
+        db.tablesTest.update(
             {
                 department: departmentValue,
                 "tables.number": tableNumber
@@ -62,7 +62,7 @@ module.exports = {
                 }
                 console.log("moveTable Update successful");
             });
-         db.tables.update(
+         db.tablesTest.update(
              {
                  department: departmentValue,
              }, {
@@ -93,7 +93,7 @@ module.exports = {
                  console.log("addTable Update successful");
              });
     } else if (tableNumber === '12' && topValue === '200' && leftValue === '30' && width === '150') {
-                db.tables.update(
+                db.tablesTest.update(
                     {
                         department: departmentValue,
                         "tables.number": tableNumber
@@ -109,7 +109,7 @@ module.exports = {
                         console.log("moveTable Update successful");
                     });
 
-                db.tables.update(
+                db.tablesTest.update(
                     {
                         department: departmentValue,
                     }, {
@@ -140,7 +140,7 @@ module.exports = {
                         console.log("addTable Update successful");
                     });
      } else if (tableNumber === '13' && topValue === '200' && leftValue === '110' && width === '60') {
-         db.tables.update(
+         db.tablesTest.update(
              {
                  department: departmentValue,
                  "tables.number": tableNumber
@@ -155,7 +155,7 @@ module.exports = {
                  }
                  console.log("moveTable Update successful");
              });
-         db.tables.update(
+         db.tablesTest.update(
              {
                  department: departmentValue,
              }, {
@@ -186,7 +186,7 @@ module.exports = {
                  console.log("addTable Update successful");
              });
      } else if (tableNumber === '13' && topValue === '200' && leftValue === '110' && width === '90') {
-         db.tables.update(
+         db.tablesTest.update(
              {
                  department: departmentValue,
                  "tables.number": tableNumber
@@ -201,7 +201,7 @@ module.exports = {
                  }
                  console.log("moveTable Update successful");
              });
-         db.tables.update(
+         db.tablesTest.update(
              {
                  department: departmentValue,
              }, {
@@ -232,7 +232,7 @@ module.exports = {
                  console.log("addTable Update successful");
              });
         } else if (tableNumber === '13' && topValue === '200' && leftValue === '110' && width === '120') {
-            db.tables.update(
+            db.tablesTest.update(
                 {
                     department: departmentValue,
                     "tables.number": tableNumber
@@ -247,7 +247,7 @@ module.exports = {
                     }
                     console.log("moveTable Update successful");
                 });
-            db.tables.update(
+            db.tablesTest.update(
                 {
                     department: departmentValue,
                 }, {
@@ -279,7 +279,7 @@ module.exports = {
                 });
 
      } else if (tableNumber === '14' && topValue === '200' && leftValue === '170' && width === '60') {
-         db.tables.update(
+         db.tablesTest.update(
              {
                  department: departmentValue,
                  "tables.number": tableNumber
@@ -294,7 +294,7 @@ module.exports = {
                  }
                  console.log("moveTable Update successful");
              });
-         db.tables.update(
+         db.tablesTest.update(
              {
                  department: departmentValue,
              }, {
@@ -325,7 +325,7 @@ module.exports = {
                  console.log("addTable Update successful");
              });
         } else if (tableNumber === '14' && topValue === '200' && leftValue === '170' && width === '90') {
-            db.tables.update(
+            db.tablesTest.update(
                 {
                     department: departmentValue,
                     "tables.number": tableNumber
@@ -340,7 +340,7 @@ module.exports = {
                     }
                     console.log("moveTable Update successful");
                 });
-            db.tables.update(
+            db.tablesTest.update(
                 {
                     department: departmentValue,
                 }, {
@@ -372,7 +372,7 @@ module.exports = {
                 });
 
         } else if (tableNumber === '15' && topValue === '200' && leftValue === '230' && width === '60') {
-            db.tables.update(
+            db.tablesTest.update(
                 {
                     department: departmentValue,
                     "tables.number": tableNumber
@@ -387,7 +387,7 @@ module.exports = {
                     }
                     console.log("moveTable Update successful");
                 });
-            db.tables.update(
+            db.tablesTest.update(
                 {
                     department: departmentValue,
                 }, {
@@ -418,7 +418,7 @@ module.exports = {
                     console.log("addTable Update successful");
                 });
         } else if (tableNumber === '17' && topValue === '200' && leftValue === '350' && width === '90') {
-            db.tables.update(
+            db.tablesTest.update(
                 {
                     department: departmentValue,
                     "tables.number": tableNumber
@@ -433,7 +433,7 @@ module.exports = {
                     }
                     console.log("moveTable Update successful");
                 });
-            db.tables.update(
+            db.tablesTest.update(
                 {
                     department: departmentValue,
                 }, {
@@ -464,7 +464,7 @@ module.exports = {
                     console.log("addTable Update successful");
                 });
      } else if (tableNumber === '19' && topValue === '200' && leftValue === '580' && width === '60') {
-         db.tables.update(
+         db.tablesTest.update(
              {
                  department: departmentValue,
                  "tables.number": tableNumber
@@ -481,7 +481,7 @@ module.exports = {
                  }
                  console.log("moveTable Update successful");
              });
-         db.tables.update(
+         db.tablesTest.update(
              {
                  department: departmentValue,
              }, {
@@ -512,7 +512,7 @@ module.exports = {
                  console.log("addTable Update successful");
              });
             } else if (tableNumber === '19' && topValue === '200' && leftValue === '580' && width === '90') {
-                db.tables.update(
+                db.tablesTest.update(
                     {
                         department: departmentValue,
                         "tables.number": tableNumber
@@ -529,7 +529,7 @@ module.exports = {
                         }
                         console.log("moveTable Update successful");
                     });
-         db.tables.update(
+         db.tablesTest.update(
              {
                  department: departmentValue,
              }, {
@@ -561,7 +561,7 @@ module.exports = {
              });
 
             } else if (tableNumber === '20' && topValue === '200' && leftValue === '640') {
-                db.tables.update(
+                db.tablesTest.update(
                     {
                         department: departmentValue,
                         "tables.number": tableNumber
@@ -578,7 +578,7 @@ module.exports = {
                         }
                         console.log("moveTable Update successful");
                     });
-                db.tables.update(
+                db.tablesTest.update(
                     {
                         department: departmentValue,
                     }, {
@@ -609,7 +609,7 @@ module.exports = {
                         console.log("addTable Update successful");
                     });
         } else if (tableNumber === '23' && topValue === '370' && leftValue === '550'  && width === '90') {
-            db.tables.update(
+            db.tablesTest.update(
                 {
                     department: departmentValue,
                     "tables.number": tableNumber
@@ -626,7 +626,7 @@ module.exports = {
                     }
                     console.log("moveTable Update successful");
                 });
-            db.tables.update(
+            db.tablesTest.update(
                 {
                     department: departmentValue,
                 }, {
