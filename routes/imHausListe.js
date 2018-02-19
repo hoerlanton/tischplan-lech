@@ -189,7 +189,7 @@ module.exports = {
         let zimmernummerValueArray = [];
         let informationElementsString = JSON.stringify(informationElements);
 
-        if (informationElementsString.indexOf("nameValue") === -1) {
+        if (informationElementsString.indexOf("targetTable") != -1) {
             return;
         }
 
