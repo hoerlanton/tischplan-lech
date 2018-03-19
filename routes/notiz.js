@@ -6,7 +6,7 @@ module.exports = {
     getNotiz: function (req, res, db) {
         console.log("tables get called");
         //Get guests from Mongo DB
-        db.newNotizDb.find(function (err, information) {
+        db.newNotizDbTest.find(function (err, information) {
             if (err) {
                 res.send(err);
             }
@@ -20,7 +20,7 @@ module.exports = {
 
         console.log(req.body);
         let newInformation = req.body;
-        db.newNotizDb.update(
+        db.newNotizDbTest.update(
             {
                 departmentNotizInput: newInformation.departmentNotizInput,
             },
@@ -37,7 +37,7 @@ module.exports = {
             });
 
         setTimeout(function () {
-            db.newNotizDb.find(
+            db.newNotizDbTest.find(
                 function (err, notiz) {
                     if (err) {
                         res.send(err);
