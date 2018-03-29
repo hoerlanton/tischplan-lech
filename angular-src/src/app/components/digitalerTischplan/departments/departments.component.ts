@@ -12,8 +12,6 @@ import {PanoramaComponent} from "./panorama/panorama.component";
 import {RestaurantComponent} from "./restaurant/restaurant.component";
 import {SonnbergZirbnComponent} from "./sonnberg-zirbn/sonnberg-zirbn.component";
 
-
-
 @Component({
   selector: 'app-departments',
   templateUrl: 'departments.component.html',

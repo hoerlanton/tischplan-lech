@@ -3,9 +3,8 @@
  */
 
 module.exports = {
-    saveImHausListe: function (req, res, db) {
-
-//JSON string is parsed to a JSON object
+    saveImHausListeProtel: function (req, res, db) {
+    //JSON string is parsed to a JSON object
 
         console.log("JSON.stringify(req.body)");
         //console.log(JSON.stringify(req.body));
@@ -174,7 +173,74 @@ module.exports = {
                 console.log("imHausListe save called");
             });
         }, 500);
+    },
+    saveImHausListeGastrodat: function (req, res, db) {
+        //JSON string is parsed to a JSON object
+        console.log("Post request made to /saveImHausListeGastrodat");
+        //console.log(JSON.stringify(req.body));
+        let imHausListeData = {
+            data: "",
+        };
 
+        let imHausListe = [];
+        imHausListeData.data = req.body;
+        console.log("imHausListeData.data");
+        console.log(imHausListeData.data);
+        //console.log(imHausListe[0].name);
+        //console.log(imHausListe[1]);
+
+        for(let i = 0; i < imHausListeData.data.length; i++) {
+            let imHausListeDataArray = imHausListeData.data[i];
+                imHausListeDataArray[0] = imHausListeDataArray[0].split(";");
+                //console.log(imHausListeDataArray[0]);
+                imHausListe.push({
+                    "zimmernummer": imHausListeDataArray[0][2],
+                    "anreise": imHausListeDataArray[0][0],
+                    "abreise": imHausListeDataArray[0][1],
+
+                    "name1": imHausListeDataArray[0][8] + " " + imHausListeDataArray[0][5] + ", " + imHausListeDataArray[0][6],
+                    "nameFrau1": imHausListeDataArray[0][9] + ", " + imHausListeDataArray[0][10],
+                    "nation1": imHausListeDataArray[0][11],
+                    "pinfo1": imHausListeDataArray[0][15],
+                    "aufenthalte1":  imHausListeDataArray[0][18],
+                    "letzterAufenthalt1":  imHausListeDataArray[0][19],
+
+                    "name2": imHausListeDataArray[0][24] + " " + imHausListeDataArray[0][21] + ", " + imHausListeDataArray[0][22],
+                    "nameFrau2": imHausListeDataArray[0][25] + ", " + imHausListeDataArray[0][26],
+                    "nation2": imHausListeDataArray[0][27],
+                    "pinfo2": imHausListeDataArray[0][31],
+                    "aufenthalte2":  imHausListeDataArray[0][34],
+                    "letzterAufenthalt2":  imHausListeDataArray[0][35],
+
+                    "name3": imHausListeDataArray[0][40] + " " + imHausListeDataArray[0][37] + ", " + imHausListeDataArray[0][38],
+                    "nameFrau3": imHausListeDataArray[0][41] + ", " + imHausListeDataArray[0][42],
+                    "nation3": imHausListeDataArray[0][43],
+                    "pinfo3": imHausListeDataArray[0][47],
+                    "aufenthalte3":  imHausListeDataArray[0][50],
+                    "letzterAufenthalt3":  imHausListeDataArray[0][51],
+
+                    "name4": imHausListeDataArray[0][56] + " " + imHausListeDataArray[0][53] + ", " + imHausListeDataArray[0][54],
+                    "nameFrau4": imHausListeDataArray[0][57] + ", " + imHausListeDataArray[0][58],
+                    "nation4": imHausListeDataArray[0][59],
+                    "pinfo4": imHausListeDataArray[0][63],
+                    "aufenthalte4":  imHausListeDataArray[0][66],
+                    "letzterAufenthalt4":  imHausListeDataArray[0][67],
+
+                    "personenAnzahl": imHausListeDataArray[0][74] + " / " + imHausListeDataArray[0][75] + " / " + imHausListeDataArray[0][76] + " / " + imHausListeDataArray[0][77] + " / " + imHausListeDataArray[0][78],
+                });
+        }
+
+        console.log(imHausListe);
+        db.imHausListeTest.remove({});
+        setTimeout(function () {
+            db.imHausListeTest.save(imHausListe, function (err, imHausListe) {
+                if (err) {
+                    res.send(err);
+                }
+                res.json(imHausListe);
+                console.log("imHausListe save called");
+            });
+        }, 500);
     },
 
     updateImHausListe: function (req, res, db) {

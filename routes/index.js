@@ -38,9 +38,12 @@ anreiseliste.updateAnreiseListe(req, res, db)});
 //Get anreiseListe
 router.get('/anreiseListe', function(req, res, next) {
 anreiseliste.getAnreiseListe(req, res, db)});
-//Save ImHausListe
-router.post('/imHausListe', function(req, res, next) {
-imHausListe.saveImHausListe(req, res, db)});
+//Save imHausListe Protel
+router.post('/imHausListeProtel', function(req, res, next) {
+imHausListe.saveImHausListeProtel(req, res, db)});
+//Save imHausListe Gastrodat
+router.post('/imHausListeGastrodat', function(req, res, next) {
+imHausListe.saveImHausListeGastrodat(req, res, db)});
 //Update ImHausListe
 router.post('/updateImHausListeElement', function(req, res, next) {
 imHausListe.updateImHausListe(req, res, db)});

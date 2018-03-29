@@ -25,7 +25,6 @@ var xlsxtojson = require("xlsx-to-json-lc");
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
-
 //Setting port
 app.set('port', process.env.PORT || 8000);
 
@@ -59,6 +58,7 @@ let storage = multer.diskStorage({
 
 let upload = multer({ storage: storage });
 let imHausListe = "";
+let pms = "";
 
 // Passport Middleware
 app.use(passport.initialize());
@@ -113,86 +113,38 @@ app.post("/upload", upload.array("uploads[]", 12), function (req, res) {
     //console.log(JSON.stringify(workbook.Workbook));
     /* DO SOMETHING WITH workbook HERE */
     imHausListe = JSON.stringify(workbook.Sheets[workbook.SheetNames[0]]);
+    pms = "Protel";
     //console.log(JSON.stringify(workbook2));
     postImHausListeToDB();
     res.send(req.files);
+    } else if (uploadedFileName.indexOf("csv") != -1) {
+        var readStream = fs.createReadStream(String("./uploads/" + uploadedFileName), 'binary');
+
+        readStream.on('data', function(chunk) {
+            String(data += chunk);
+
+        }).on('end', function() {
+            console.log(typeof data);
+            csv({noheader: true})
+                .fromString(data)
+                .on('csv', (csvRow) => { // this func will be called 3 times
+                    console.log(csvRow);// => [1,2,3] , [4,5,6]  , [7,8,9]
+                    json.push(csvRow);
+                })
+                .on('done', (error) => {
+
+                    imHausListe = JSON.stringify(json);
+                    pms = "Gastrodat";
+                    //console.log('csvDatei: ');
+                    //console.log(csvDatei);
+                    postImHausListeToDB();
+                    console.log('end')
+            });
+        });
     } else {
         res.send(JSON.stringify("Error, falscher Datentyp"));
     }
 });
-//data = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]], {header:1});
-//console.log(data);
-
-/*
- if(req.files[0].filename.indexOf('xlsx') != -1 ){
- exceltojson = xlsxtojson;
- } else {
- exceltojson = xlstojson;
- }
- */
-/*
- excel2Json("./uploads/" + uploadedFileName, function(err, output) {
- if (err) {
- console.log(err)
- } else {
- console.log('output');
- console.log(output);
- }
- });
-
- excel2Json("./uploads/" + uploadedFileName, {
- 'convert_all_sheet': false,
- 'return_type': 'Object',
- 'sheetName': 'survey'
- }, function(err, output) {
- if (err) {
- console.log(err)
- } else {
- console.log('output');
- console.log(output);
- }
- });
-
-
- node_xj({
- input: String("./uploads/" + uploadedFileName),  // input xls
- output: "output.json", // output json
- sheet: "sheetname"  // specific sheetname
- }, function(err, result) {
- if(err) {
- console.error(err);
- } else {
- console.log(result);
- console.log();
- }
- });
- */
-
-
-
-/*
- try {
- exceltojson({
- input: String("./uploads/" + uploadedFileName), //the same path where we uploaded our file
- output: null, //since we don't need output.json
- lowerCaseHeaders:true
- }, function(err,result){
- if(err) {
- return res.json({error_code:1,err_desc:err, data: null});
- }
- res.json({error_code:0,err_desc:null, data: result});
- imHausListe = JSON.stringify(result);
- console.log(result);
-
- postImHausListeToDB();
- //New User is saved in DB, function called in receivedAuthentication - send to index.js /guests REST-FUL API
-
- });
- } catch (e){
- res.json({error_code:1,err_desc:"Corupted excel file"});
- }
- */
-
 
 
 function postImHausListeToDB() {
@@ -201,7 +153,7 @@ function postImHausListeToDB() {
         //Change URL to http://www.tischplan.servicio.io if deploying
         host: HOST_URL,
         port: '80',
-        path: '/imHausListe',
+        path: '/imHausListe' + pms,
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -220,113 +172,6 @@ function postImHausListeToDB() {
     post_req.write(imHausListe);
     post_req.end();
 }
-
-/*
- var readStream = fs.createReadStream(String("./uploads/" + uploadedFileName), 'binary');
-
- readStream.on('data', function(chunk) {
- String(data += chunk);
-
- }).on('end', function() {
- console.log(typeof data);
- csv({noheader:true})
- .fromString(data)
- .on('csv',(csvRow)=>{ // this func will be called 3 times
- //console.log(csvRow);// => [1,2,3] , [4,5,6]  , [7,8,9]
- //json.push(csvRow);
- })
- .on('done', (error)=>{
-
- //csvDatei = JSON.stringify(json);
- //console.log('csvDatei: ');
- //console.log(csvDatei);
- if (csvDatei.indexOf("Im Haus") !== -1) {
- postImHausListeToDB();
- } else if (csvDatei.indexOf("Anreisen") !== -1) {
- postAnreiseListeToDB();
- } else if (csvDatei.indexOf("Trace Report") !== -1){
- postTracesListeToDB();
- }
- console.log('end')
- });
-
-
- //New User is saved in DB, function called in receivedAuthentication - send to index.js /guests REST-FUL API
- function postImHausListeToDB() {
- // An object of options to indicate where to post to
- let post_options = {
- //Change URL to hotelmessengertagbag.herokuapp.com if deploying
- host: HOST_URL,
- port: '80',
- path: '/imHausListe',
- method: 'POST',
- headers: {
- 'Content-Type': 'application/json'
- }
- };
-
- // Set up the request
- let post_req = http.request(post_options, function (res) {
- res.setEncoding('utf8');
- res.on('data', function (chunk) {
- console.log('Response: ' + "chunk as string");
- });
- });
-
- // post the data
- post_req.write(csvDatei);
- post_req.end();
- }
- function postAnreiseListeToDB() {
- // An object of options to indicate where to post to
- let post_options = {
- //Change URL to hotelmessengertagbag.herokuapp.com if deploying
- host: HOST_URL,
- port: '80',
- path: '/anreiseListe',
- method: 'POST',
- headers: {
- 'Content-Type': 'application/json'
- }
- };
- // Set up the request
- let post_req = http.request(post_options, function (res) {
- res.setEncoding('utf8');
- res.on('data', function (chunk) {
- console.log('Response: ' + "chunk as string");
- });
- });
- // post the data
- post_req.write(csvDatei);
- post_req.end();
- }
- function postTracesListeToDB () {
- // An object of options to indicate where to post to
- let post_options = {
- //Change URL to hotelmessengertagbag.herokuapp.com if deploying
- host: HOST_URL,
- port: '80',
- path: '/tracesListe',
- method: 'POST',
- headers: {
- 'Content-Type': 'application/json'
- }
- };
- // Set up the request
- let post_req = http.request(post_options, function (res) {
- res.setEncoding('utf8');
- res.on('data', function (chunk) {
- console.log('Response: ' + "chunk as string");
- });
- });
- // post the data
- post_req.write(csvDatei);
- post_req.end();
- }
- });
- */
-
-
 
 /*
  * Start server

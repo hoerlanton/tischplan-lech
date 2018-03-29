@@ -55,9 +55,7 @@ export class NavigationComponent implements OnInit {
   delete(informationElement, j, event) {
     console.log(informationElement);
     console.log(j);
-
     event.stopPropagation();
-
     this.tischplanService.deleteInformationElement(informationElement)
       .subscribe(informationElement => {
         this.newInformationElements.splice(j, 1);
@@ -110,9 +108,7 @@ export class NavigationComponent implements OnInit {
   upload() {
     const formData: any = new FormData();
     const files: Array<File> = this.filesToUpload;
-
     formData.append('uploads[]', files[0], files[0]['name']);
-
     this.http.post('/upload', formData)
       .map(files => files.json()).map(res => {
       // 1st parameter is a flash message text
@@ -126,9 +122,7 @@ export class NavigationComponent implements OnInit {
           cssClass: 'alert-danger',
           timeout: 10000
         })
-      }})
-
-      .subscribe(files => console.log("files", files));
+      }}).subscribe(files => console.log("files", files));
     setTimeout(() => {
       this.reloadLists.emit();
     }, 3000);
@@ -170,7 +164,6 @@ export class NavigationComponent implements OnInit {
   }
 
   umsetzen() {
-
     event.preventDefault();
     console.log("UMSETZTEN CALLED");
     let quellTisch = this.quellTisch;
@@ -180,7 +173,6 @@ export class NavigationComponent implements OnInit {
     console.log('quellTischNumber' + quellTisch);
     let tableToMove = {department: "Empty", number: "0", targetTable: "0", targetDepartment: "Empty"};
     let j = 0;
-
     if (Number(this.quellTisch) >= 40 && Number(this.quellTisch) <= 59) {
       tableToMove.department = "Sonnberg-Zirbn";
       j = 0;
@@ -204,16 +196,13 @@ export class NavigationComponent implements OnInit {
     } else if (Number(this.zielTisch) >= 501 && Number(this.zielTisch) <= 524) {
       tableToMove.targetDepartment = "Wintergarten";
     }
-
     let indexZiel = 0;
     let indexQuell = 0;
-
     tableToMove.number = this.quellTisch;
     tableToMove.targetTable = this.zielTisch;
     console.log(tableToMove);
     this.tischplanService.getTables()
       .subscribe(tables => {
-
         for (let a = 0; a < tables.length; a++) {
           for (let b = 0; b < tables[a].tables.length; b++) {
             if (tables[a].department === tableToMove.department) {
@@ -251,7 +240,6 @@ export class NavigationComponent implements OnInit {
         let tableInformationExport = this.tableInformation;
         this.umsetzenExport.emit({tableToMove, indexZiel, indexQuell, tableInformationExport});
       });
-
   }
 
   keyDownFunction(event) {
