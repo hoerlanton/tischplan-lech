@@ -6,7 +6,7 @@ module.exports = {
     getInformation: function (req, res, db) {
         console.log("tables get called");
         //Get guests from Mongo DB
-        db.newInformationTest.find(function (err, information) {
+        db.lechNewInformation.find(function (err, information) {
             if (err) {
                 res.send(err);
             }
@@ -19,7 +19,7 @@ module.exports = {
         console.log("deleteInformation request made to /deleteInformation");
         let informationElementToDelete = req.body;
         console.log(JSON.stringify(informationElementToDelete));
-        db.newInformationTest.remove({
+        db.lechNewInformation.remove({
 
                 roomNumber: informationElementToDelete.roomNumber,
                 text: informationElementToDelete.text
@@ -37,19 +37,19 @@ module.exports = {
         console.log(req.body);
         let newInformation = req.body;
 
-        db.tablesTest.update(
+        db.lechTables.update(
             {
                 "tables.number": newInformation.tableNumber,
             },
             {
                 $push: {
                     "tables.$.groups": {
-                        "newTraceText": newInformation.text,
-                        "newTraceRoomNumber": newInformation.roomNumber,
-                        "newTraceName": newInformation.name,
-                        "newTraceEmployee": newInformation.employee,
-                        "newTraceDate": newInformation.date,
-                        "newTraceTableNumber": newInformation.tableNumber
+                        "newInfoText": newInformation.text,
+                        "newInfoRoomNumber": newInformation.roomNumber,
+                        "newInfoName": newInformation.name,
+                        "newInfoEmployee": newInformation.employee,
+                        "newInfoDate": newInformation.date,
+                        "newInfoTableNumber": newInformation.tableNumber
                     }
                 }
             }, function (err, tables) {
@@ -60,7 +60,7 @@ module.exports = {
             });
 
         setTimeout(function () {
-            db.tablesTest.findOne(
+            db.lechTables.findOne(
                 {
                     "tables.number": newInformation.tableNumber
                 },
@@ -79,7 +79,7 @@ module.exports = {
     getInformationEmployees: function (req, res, db) {
         console.log("getInformationEmployees get called");
         //Get guests from Mongo DB
-        db.newInformationToEmployeeTest.find(function (err, information) {
+        db.lechNewInformationToEmployee.find(function (err, information) {
             if (err) {
                 res.send(err);
             }
@@ -98,7 +98,7 @@ module.exports = {
         let newInformation = req.body;
 
 
-        db.newInformationTest.save(newInformation, function (err, newInformation) {
+        db.lechNewInformation.save(newInformation, function (err, newInformation) {
             if (err) {
                 res.send(err);
             }
@@ -106,7 +106,7 @@ module.exports = {
         });
 
         setTimeout(function () {
-            db.newInformationToEmployeeTest.findOne(
+            db.lechNewInformationToEmployee.findOne(
                 {
                     "employee": newInformation.employee
                 },
@@ -117,13 +117,13 @@ module.exports = {
                     if (err) {
                         res.send(err);
                     }
-                    db.newInformationToEmployeeTest.update(
+                    db.lechNewInformationToEmployee.update(
                         {
                             "employee": newInformation.employee
                         },
                         {
                      $inc: {
-                         numberOfTraces: +1,
+                         numberOfInfos: +1,
                             }
                         }, function (err, tables) {
                             if (err) {

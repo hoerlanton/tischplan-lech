@@ -19,15 +19,9 @@ export class FormComponent implements OnInit {
   @Input('nameTraceInput') nameTraceInput: string;
   @Input('employee') employee: string;
   @Input('tablesRestaurant') tablesRestaurant: Table[];
-  @Input('tablesPanorama') tablesPanorama: Table[];
-  @Input('tablesWintergarten') tablesWintergarten: Table[];
-  @Input('tablesSonnbergZirbn') tablesSonnbergZirbn: Table[];
   @Input('showInfoFormBool') showInfoFormBool: boolean;
   @Input('showNotizFormBool') showNotizFormBool: boolean;
   @Input('notizElements') notizElements: any;
-  @Input('showWintergartenBool') showWintergartenBool: boolean;
-  @Input('showSonnbergZirbnBool') showSonnbergZirbnBool: boolean;
-  @Input('showPanoramaBool') showPanoramaBool: boolean;
   @Input('showRestaurantBool') showRestaurantBool: boolean;
   @Input('showAlleBool') showAlleBool: boolean;
   @Output()
@@ -42,8 +36,8 @@ export class FormComponent implements OnInit {
   notizDate: any;
 
   constructor(private tischplanService: TischplanService, private _flashMessagesService: FlashMessagesService) {
-    this.departments = ["Sonnberg-Zirbn", "Restaurant", "Wintergarten", "Panorama"];
-    this.employees = ["Alexandra Lopion", "Julia Ackermann", "Torsten Streit", "Sabrina Schrötwieser", "Loreen Kumpfert", "Aylin Fiedler", "Julia Laue", "Richard Klöffel", "Tino Deisenroth", "Stefan Scheiber", "Dominic Mugambi", "Ralf Rohsmann", "Florian Thurner"];
+    this.departments = ["Restaurant"];
+    this.employees = ["Test1", "Test2", "Test3", "Test4"];
   }
 
   ngOnInit() {
@@ -82,28 +76,10 @@ export class FormComponent implements OnInit {
           if (Information === null) {
             return;
           } else {
-            if (Information.tables[0].department === "Sonnberg-Zirbn") {
-              for (let i = 0; i < this.tablesSonnbergZirbn.length; i++) {
-                if (this.tablesSonnbergZirbn[i].number === Information.tables[0].number) {
-                  this.tablesSonnbergZirbn[i] = Information.tables[0];
-                }
-              }
-            } else if (Information.tables[0].department === "Panorama") {
-              for (let i = 0; i < this.tablesPanorama.length; i++) {
-                if (this.tablesPanorama[i].number === Information.tables[0].number) {
-                  this.tablesPanorama[i] = Information.tables[0];
-                }
-              }
-            } else if (Information.tables[0].department === "Restaurant") {
+            if (Information.tables[0].department === "Restaurant") {
               for (let i = 0; i < this.tablesRestaurant.length; i++) {
                 if (this.tablesRestaurant[i].number === Information.tables[0].number) {
                   this.tablesRestaurant[i] = Information.tables[0];
-                }
-              }
-            } else if (Information.tables[0].department === "Wintergarten") {
-              for (let i = 0; i < this.tablesWintergarten.length; i++) {
-                if (this.tablesWintergarten[i].number === Information.tables[0].number) {
-                  this.tablesWintergarten[i] = Information.tables[0];
                 }
               }
             }

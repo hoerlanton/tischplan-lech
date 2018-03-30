@@ -7,28 +7,43 @@
         <div class="table" [ngStyle]="{'background-color': '#' + tableRestaurant.bgColor}">
           <div *ngIf="tableRestaurant.isBesetzt === 'true'">
             <div *ngFor="let group of tableRestaurant.groups; let j = index;">
-              <div [style.border]="getStyle(group.traceValue)">
-                <div *ngIf="group.nameValue">
+              <div [style.border]="getStyle(group)">
+                <div *ngIf="group.name1Value">
                   <p style="background-color: #FFFFFF; padding: 10px">
-                    <b> Name:</b> {{group.nameValue}}<br>
                     <b> Zimmernummer:</b> {{group.zimmernummerValue}}<br>
                     <b> Anreise Datum:</b> {{group.anreiseValue}}<br>
                     <b> Abreise Datum:</b> {{group.abreiseValue}}<br>
                     <b> Personenanzahl:</b> {{group.personenAnzahlValue}}<br>
-                    <b> Nation:</b> {{group.nationValue}}<br>
-                    <b> Sprache:</b> {{group.spracheValue}}<br>
-                    <b> Preis Typ:</b> {{group.preisTypValue}}<br>
-                    <b> Reisebüro:</b> {{group.notiz1Value}}<br>
-                    <b> Kategorie:</b> {{group.kategorieValue}}<br>
-                    <b> Notiz1:</b> {{group.notiz1Value}}<br>
-                    <b> Notiz2:</b> {{group.notiz2Value}}<br>
-                    <b> Trace:</b> {{group.traceValue}}<br>
+                    <b> Name 1:</b> {{group.name1Value}}<br>
+                    <b> Name Frau 1:</b> {{group.nameFrau1Value}}<br>
+                    <b> Nation 1:</b> {{group.nation1Value}}<br>
+                    <b> Info 1:</b> {{group.pinfo1Value}}<br>
+                    <b> Anzahl der Aufenthalte 1:</b> {{group.aufenthalte1Value}}<br>
+                    <b> Letzter Aufenthalt 1:</b> {{group.letzterAufenthalt1Value}}<br>
+                    <b> Name 2:</b> {{group.name2Value}}<br>
+                    <b> Name Frau 2:</b> {{group.nameFrau2Value}}<br>
+                    <b> Nation 2:</b> {{group.nation2Value}}<br>
+                    <b> Info 2:</b> {{group.pinfo2Value}}<br>
+                    <b> Anzahl der Aufenthalte 2:</b> {{group.aufenthalte2Value}}<br>
+                    <b> Letzter Aufenthalt 2:</b> {{group.letzterAufenthalt2Value}}<br>
+                    <b> Name 3:</b> {{group.name3Value}}<br>
+                    <b> Name Frau 3:</b> {{group.nameFrau3Value}}<br>
+                    <b> Nation 3:</b> {{group.nation3Value}}<br>
+                    <b> Info 3:</b> {{group.pinfo3Value}}<br>
+                    <b> Anzahl der Aufenthalte 3:</b> {{group.aufenthalte3Value}}<br>
+                    <b> Letzter Aufenthalt 3:</b> {{group.letzterAufenthalt3Value}}<br>
+                    <b> Name 4:</b> {{group.name4Value}}<br>
+                    <b> Name Frau 4:</b> {{group.nameFrau4Value}}<br>
+                    <b> Nation 4:</b> {{group.nation4Value}}<br>
+                    <b> Info 4:</b> {{group.pinfo4Value}}<br>
+                    <b> Anzahl der Aufenthalte 4:</b> {{group.aufenthalte4Value}}<br>
+                    <b> Letzter Aufenthalt 4:</b> {{group.letzterAufenthalt4Value}}<br>
                   </p>
                 </div>
               </div>
-              <div *ngIf="group.newTraceName">
+              <div *ngIf="group.newInfoName">
                 <p style="background-color: #FFFFFF; border: solid 3px red">
-                  <b> Zimmernummer: </b>{{group.newTraceRoomNumber}}<br> <b> Neuer Trace: </b>{{group.newTraceText}} <br> <b> Tischnummer: </b>{{group.newTraceTableNumber}} <br> <b> Mitarbeiter: </b>{{group.newTraceEmployee}} <br> <b> Name: </b>{{group.newTraceName}} <br> <b> Datum: </b>{{group.newTraceDate}}
+                  <b> Zimmernummer: </b>{{group.newInfoRoomNumber}}<br> <b> Neuer Info: </b>{{group.newInfoText}} <br> <b> Tischnummer: </b>{{group.newInfoTableNumber}} <br> <b> Mitarbeiter: </b>{{group.newInfoEmployee}} <br> <b> Name: </b>{{group.newInfoName}} <br> <b> Datum: </b>{{group.newInfoDate}}
                 </p>
               </div>
             </div>

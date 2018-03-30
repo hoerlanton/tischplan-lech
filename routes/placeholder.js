@@ -15,7 +15,7 @@ module.exports = {
 
         //console.log(occupyTable);
 
-        db.tablesTest.update(
+        db.lechTables.update(
             {
                 department: addPlaceholder.department,
                 "tables.number": addPlaceholder.number
@@ -32,7 +32,7 @@ module.exports = {
             });
 
         setTimeout(function () {
-            db.tablesTest.find(
+            db.lechTables.find(
                 {
                     department: addPlaceholder.department,
                     "tables.number": addPlaceholder.number
@@ -99,7 +99,7 @@ module.exports = {
         //console.log(tableValue);
         //console.log(occupyTable);
 
-        db.tablesTest.update(
+        db.lechTables.update(
             {
                 department: departmentValueDB,
                 "tables.number": tableValue[0]
@@ -116,7 +116,7 @@ module.exports = {
             });
 
         setTimeout(function () {
-            db.tablesTest.findOne(
+            db.lechTables.findOne(
                 {
                     department: departmentValueDB,
                     "tables.number": tableValue[0]

@@ -3,20 +3,8 @@
  */
 
 const
-    removeTablesPanorama60s = require('./removeTablesPanorama60s.js'),
-    removeTablesPanorama70s = require('./removeTablesPanorama70s.js'),
-    removeTablesPanorama80s = require('./removeTablesPanorama80s.js'),
-    removeTablesSonnbergZirbn = require('./removeTablesSonnbergZirbn.js'),
-    removeTablesWintergarten = require('./removeTablesWintergarten.js'),
-    removeTablesRestaurant1024 = require('./removeTablesRestaurant10-24.js'),
-    removeTablesRestaurant110 = require('./removeTablesRestaurant1-10.js'),
-    addTablesPanorama60s = require('./addTablesPanorama60s.js'),
-    addTablesPanorama70s = require('./addTablesPanorama70s.js'),
-    addTablesPanorama80s = require('./addTablesPanorama80s.js'),
-    addTablesSonnbergZirbn = require('./addTablesSonnbergZirbn.js'),
-    addTablesWintergarten = require('./addTablesWintergarten.js'),
-    addTablesRestaurant1024 = require('./addTablesRestaurant10-24.js'),
-    addTablesRestaurant110 = require('./addTablesRestaurant1-10.js');
+    removeTablesRestaurant = require('./removeTablesRestaurant.js'),
+    addTablesRestaurant = require('./addTablesRestaurant.js');
 
 
 module.exports = {
@@ -24,7 +12,7 @@ module.exports = {
 
         console.log("tables get called");
         //Get guests from Mongo DB
-        db.tablesTest.find(function (err, tables) {
+        db.lechTables.find(function (err, tables) {
             if (err) {
                 res.send(err);
             }
@@ -70,16 +58,10 @@ module.exports = {
         console.log('topValue: ' + topValue);
         console.log('leftValue: ' + leftValue);
 
-        removeTablesPanorama60s.removeTable(db, tableNumber, departmentValue, topValue, leftValue, height, width);
-        removeTablesPanorama70s.removeTable(db, tableNumber, departmentValue, topValue, leftValue, height, width);
-        removeTablesPanorama80s.removeTable(db, tableNumber, departmentValue, topValue, leftValue, height, width);
-        removeTablesSonnbergZirbn.removeTable(db, tableNumber, departmentValue, topValue, leftValue, height, width);
-        removeTablesWintergarten.removeTable(db, tableNumber, departmentValue, topValue, leftValue, height, width);
-        removeTablesRestaurant110.removeTable(db, tableNumber, departmentValue, topValue, leftValue, height, width);
-        removeTablesRestaurant1024.removeTable(db, tableNumber, departmentValue, topValue, leftValue, height, width);
+        removeTablesRestaurant.removeTable(db, tableNumber, departmentValue, topValue, leftValue, height, width);
 
         setTimeout(function () {
-            db.tablesTest.find(
+            db.lechTables.find(
                 {
                     "department": departmentValue,
                 },
@@ -130,16 +112,10 @@ module.exports = {
         console.log('topValue: ' + topValue);
         console.log('leftValue: ' + leftValue);
 
-        addTablesPanorama60s.addTable(db, tableNumber, departmentValue, topValue, leftValue, height, width);
-        addTablesPanorama70s.addTable(db, tableNumber, departmentValue, topValue, leftValue, height, width);
-        addTablesPanorama80s.addTable(db, tableNumber, departmentValue, topValue, leftValue, height, width);
-        addTablesSonnbergZirbn.addTable(db, tableNumber, departmentValue, topValue, leftValue, height, width);
-        addTablesWintergarten.addTable(db, tableNumber, departmentValue, topValue, leftValue, height, width);
-        addTablesRestaurant110.addTable(db, tableNumber, departmentValue, topValue, leftValue, height, width);
-        addTablesRestaurant1024.addTable(db, tableNumber, departmentValue, topValue, leftValue, height, width);
+        addTablesRestaurant.addTable(db, tableNumber, departmentValue, topValue, leftValue, height, width);
 
         setTimeout(function () {
-            db.tablesTest.find(
+            db.lechTables.find(
                 {
                     "department": departmentValue,
                 },
@@ -195,20 +171,11 @@ module.exports = {
             console.log(departmentValueDB);
         }
 
-        if (departmentValue === "SonnbergZirbn") {
-            departmentValueDB = "Sonnberg-Zirbn";
-        }
-        else if (departmentValue === "Panorama") {
-            departmentValueDB = "Panorama";
-        }
-        else if (departmentValue === "Restaurant") {
+        if (departmentValue === "Restaurant") {
             departmentValueDB = "Restaurant";
         }
-        else if (departmentValue === "Wintergarten") {
-            departmentValueDB = "Wintergarten";
-        }
 
-        db.tablesTest.update(
+        db.lechTables.update(
             {
                 department: departmentValueDB,
                 "tables.number": tableValue
@@ -226,7 +193,7 @@ module.exports = {
             });
 
         setTimeout(function () {
-            db.tablesTest.findOne(
+            db.lechTables.findOne(
                 {
                     "department": departmentValueDB,
                     "tables.number": tableValue
@@ -257,7 +224,7 @@ module.exports = {
                 for (let i = 0; i < dispenseTable.group.length; i++) {
                     if (dispenseTable.groups.length > dispenseTable.group.length) {
                         console.log("111111111111");
-                        db.tablesTest.findAndModify({
+                        db.lechTables.findAndModify({
                             query: {department: dispenseTable.department, "tables.number": dispenseTable.number},
                             update: {
                                 $unset: {
@@ -272,7 +239,7 @@ module.exports = {
                             console.log("No Error");
                         });
                         setTimeout(function () {
-                            db.tablesTest.findAndModify({
+                            db.lechTables.findAndModify({
                                 query: {department: dispenseTable.department, "tables.number": dispenseTable.number},
                                 update: {
                                     $pull: {
@@ -289,7 +256,7 @@ module.exports = {
 
                         }, 100);
                     } else if (dispenseTable.groups.length === dispenseTable.group.length) {
-                        db.tablesTest.findAndModify({
+                        db.lechTables.findAndModify({
                             query: {department: dispenseTable.department, "tables.number": dispenseTable.number},
                             update: {
                                 $set: {
@@ -308,7 +275,7 @@ module.exports = {
                         });
                     }
                     setTimeout(function () {
-                        db.tablesTest.findAndModify({
+                        db.lechTables.findAndModify({
                             query: {department: dispenseTable.department, "tables.number": dispenseTable.number,},
                             update: {
                                 $pull: {
@@ -325,7 +292,7 @@ module.exports = {
                     }, 100);
                 }
             } else {
-                db.tablesTest.findAndModify({
+                db.lechTables.findAndModify({
                     query: {department: dispenseTable.department, "tables.number": dispenseTable.number},
                     update: {
                         $set: {
@@ -344,7 +311,7 @@ module.exports = {
                 });
             }
         } else {
-            db.tablesTest.findAndModify({
+            db.lechTables.findAndModify({
                 query: {department: dispenseTable.department, "tables.number": dispenseTable.number},
                 update: {
                     $set: {
@@ -364,7 +331,7 @@ module.exports = {
 
         }
         setTimeout(function () {
-            db.tablesTest.find(
+            db.lechTables.find(
                 {
                     department: dispenseTable.department,
                     "tables.number": dispenseTable.number
@@ -376,8 +343,5 @@ module.exports = {
                     //  console.log("Dispense Table: " + JSON.stringify(tables));
                 });
         }, 500);
-
     },
-
-
 };

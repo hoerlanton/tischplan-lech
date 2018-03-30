@@ -163,9 +163,9 @@ module.exports = {
          //console.log('imHausListe' +  imHausListe);
          //imHausListe.data = req.body;
          */
-        db.imHausListeTest.remove({});
+        db.lechImHausListe.remove({});
         setTimeout(function () {
-            db.imHausListeTest.save(imHausListe, function (err, imHausListe) {
+            db.lechImHausListe.save(imHausListe, function (err, imHausListe) {
                 if (err) {
                     res.send(err);
                 }
@@ -183,57 +183,59 @@ module.exports = {
         };
 
         let imHausListe = [];
+        let imHausListeDataArray = [];
         imHausListeData.data = req.body;
         console.log("imHausListeData.data");
         console.log(imHausListeData.data);
         //console.log(imHausListe[0].name);
         //console.log(imHausListe[1]);
 
-        for(let i = 0; i < imHausListeData.data.length; i++) {
-            let imHausListeDataArray = imHausListeData.data[i];
-                imHausListeDataArray[0] = imHausListeDataArray[0].split(";");
-                //console.log(imHausListeDataArray[0]);
-                imHausListe.push({
-                    "zimmernummer": imHausListeDataArray[0][2],
-                    "anreise": imHausListeDataArray[0][0],
-                    "abreise": imHausListeDataArray[0][1],
-
-                    "name1": imHausListeDataArray[0][8] + " " + imHausListeDataArray[0][5] + ", " + imHausListeDataArray[0][6],
-                    "nameFrau1": imHausListeDataArray[0][9] + ", " + imHausListeDataArray[0][10],
-                    "nation1": imHausListeDataArray[0][11],
-                    "pinfo1": imHausListeDataArray[0][15],
-                    "aufenthalte1":  imHausListeDataArray[0][18],
-                    "letzterAufenthalt1":  imHausListeDataArray[0][19],
-
-                    "name2": imHausListeDataArray[0][24] + " " + imHausListeDataArray[0][21] + ", " + imHausListeDataArray[0][22],
-                    "nameFrau2": imHausListeDataArray[0][25] + ", " + imHausListeDataArray[0][26],
-                    "nation2": imHausListeDataArray[0][27],
-                    "pinfo2": imHausListeDataArray[0][31],
-                    "aufenthalte2":  imHausListeDataArray[0][34],
-                    "letzterAufenthalt2":  imHausListeDataArray[0][35],
-
-                    "name3": imHausListeDataArray[0][40] + " " + imHausListeDataArray[0][37] + ", " + imHausListeDataArray[0][38],
-                    "nameFrau3": imHausListeDataArray[0][41] + ", " + imHausListeDataArray[0][42],
-                    "nation3": imHausListeDataArray[0][43],
-                    "pinfo3": imHausListeDataArray[0][47],
-                    "aufenthalte3":  imHausListeDataArray[0][50],
-                    "letzterAufenthalt3":  imHausListeDataArray[0][51],
-
-                    "name4": imHausListeDataArray[0][56] + " " + imHausListeDataArray[0][53] + ", " + imHausListeDataArray[0][54],
-                    "nameFrau4": imHausListeDataArray[0][57] + ", " + imHausListeDataArray[0][58],
-                    "nation4": imHausListeDataArray[0][59],
-                    "pinfo4": imHausListeDataArray[0][63],
-                    "aufenthalte4":  imHausListeDataArray[0][66],
-                    "letzterAufenthalt4":  imHausListeDataArray[0][67],
-
-                    "personenAnzahl": imHausListeDataArray[0][74] + " / " + imHausListeDataArray[0][75] + " / " + imHausListeDataArray[0][76] + " / " + imHausListeDataArray[0][77] + " / " + imHausListeDataArray[0][78],
-                });
+        for (let i = 1; i < imHausListeData.data.length; i++) {
+            let imHausListeDataArrayConcat = [];
+            let imHausListeDataArrayConcatSplit = [];
+            imHausListeDataArray = imHausListeData.data[i];
+            for (let j = 0; j < imHausListeDataArray.length; j++) {
+                imHausListeDataArrayConcat += imHausListeDataArray[j];
+            }
+            console.log("imHausListeDataArrayConcat");
+            console.log(imHausListeDataArrayConcat);
+            imHausListeDataArrayConcatSplit = imHausListeDataArrayConcat.split(";");
+        //console.log(imHausListeDataArrayConcatSplit);
+        imHausListe.push({
+            "zimmernummer": imHausListeDataArrayConcatSplit[2],
+            "anreise": imHausListeDataArrayConcatSplit[0],
+            "abreise": imHausListeDataArrayConcatSplit[1],
+            "name1": imHausListeDataArrayConcatSplit[8] + " " + imHausListeDataArrayConcatSplit[5] + " " + imHausListeDataArrayConcatSplit[6],
+            "nameFrau1": imHausListeDataArrayConcatSplit[9] + " " + imHausListeDataArrayConcatSplit[10],
+            "nation1": imHausListeDataArrayConcatSplit[11],
+            "pinfo1": imHausListeDataArrayConcatSplit[15],
+            "aufenthalte1":  imHausListeDataArrayConcatSplit[18],
+            "letzterAufenthalt1":  imHausListeDataArrayConcatSplit[19],
+            "name2": imHausListeDataArrayConcatSplit[25] + " " + imHausListeDataArrayConcatSplit[22] + " " + imHausListeDataArrayConcatSplit[23],
+            "nameFrau2": imHausListeDataArrayConcatSplit[26] + " " + imHausListeDataArrayConcatSplit[27],
+            "nation2": imHausListeDataArrayConcatSplit[28],
+            "pinfo2": imHausListeDataArrayConcatSplit[32],
+            "aufenthalte2":  imHausListeDataArrayConcatSplit[35],
+            "letzterAufenthalt2":  imHausListeDataArrayConcatSplit[36],
+            "name3": imHausListeDataArrayConcatSplit[42] + " " + imHausListeDataArrayConcatSplit[39] + " " + imHausListeDataArrayConcatSplit[40],
+            "nameFrau3": imHausListeDataArrayConcatSplit[43] + " " + imHausListeDataArrayConcatSplit[44],
+            "nation3": imHausListeDataArrayConcatSplit[45],
+            "pinfo3": imHausListeDataArrayConcatSplit[49],
+            "aufenthalte3":  imHausListeDataArrayConcatSplit[52],
+            "letzterAufenthalt3":  imHausListeDataArrayConcatSplit[53],
+            "name4": imHausListeDataArrayConcatSplit[59] + " " + imHausListeDataArrayConcatSplit[56] + " " + imHausListeDataArrayConcatSplit[57],
+            "nameFrau4": imHausListeDataArrayConcatSplit[60] + " " + imHausListeDataArrayConcatSplit[61],
+            "nation4": imHausListeDataArrayConcatSplit[62],
+            "pinfo4": imHausListeDataArrayConcatSplit[64],
+            "aufenthalte4":  imHausListeDataArrayConcatSplit[69],
+            "letzterAufenthalt4":  imHausListeDataArrayConcatSplit[70],
+            "personenAnzahl": imHausListeDataArrayConcatSplit[74] + " / " + imHausListeDataArrayConcatSplit[75] + " / " + imHausListeDataArrayConcatSplit[76] + " / " + imHausListeDataArrayConcatSplit[77] + " / " + imHausListeDataArrayConcatSplit[78],
+        });
         }
-
         console.log(imHausListe);
-        db.imHausListeTest.remove({});
+        db.lechImHausListe.remove({});
         setTimeout(function () {
-            db.imHausListeTest.save(imHausListe, function (err, imHausListe) {
+            db.lechImHausListe.save(imHausListe, function (err, imHausListe) {
                 if (err) {
                     res.send(err);
                 }
@@ -242,7 +244,6 @@ module.exports = {
             });
         }, 500);
     },
-
     updateImHausListe: function (req, res, db) {
 
         console.log("Post request made to /updateImHausListeElement");
@@ -255,43 +256,49 @@ module.exports = {
         let zimmernummerValueArray = [];
         let informationElementsString = JSON.stringify(informationElements);
 
-
         if (informationElementsString.indexOf("targetTable") != -1) {
             console.log("BUG I GONNA KILL YOU !!!!")
         } else {
 
         if (informationElementsString.indexOf("leftValue") != -1) {
             for (let i = 0; i < informationElements.groups.length; i++) {
-                nameValueArray.push(informationElements.groups[i].nameValue);
+                nameValueArray.push(informationElements.groups[i].name1Value);
                 zimmernummerValueArray.push(informationElements.groups[i].zimmernummerValue);
 
-                db.imHausListeTest.update(
+                let string = " ";
+                nameValueArray[i] = string.concat(nameValueArray[i]);
+
+                console.log(nameValueArray[i]);
+                console.log(zimmernummerValueArray[i]);
+
+                db.lechImHausListe.update(
                     {
-                        name: nameValueArray[i],
+                        name1: nameValueArray[i],
                         "zimmernummer": zimmernummerValueArray[i]
                     },
                     {
                         $set: {
                             "bgColor": "ffffff",
                         }
-                    }, function (err, tables) {
+                    }, function (err, imHausListe) {
                         if (err) {
                             console.log("Error");
                         }
-                        console.log("occupyTable Update successful");
+                        console.log("lechImHausListe Update successful");
+                        console.log(imHausListe);
                     });
 
             }
         } else {
-            nameValueArray.push(informationElements[0].substring(1, informationElements[0].length));
-            zimmernummerValueArray.push(informationElements[4].substring(1, informationElements[4].length));
+            nameValueArray.push(informationElements[4].substring(0, informationElements[4].length));
+            zimmernummerValueArray.push(informationElements[0].substring(1, informationElements[0].length));
 
             console.log(nameValueArray[0]);
             console.log(zimmernummerValueArray[0]);
 
-            db.imHausListeTest.update(
+            db.lechImHausListe.update(
                 {
-                    name: nameValueArray[0],
+                    name1: nameValueArray[0],
                     "zimmernummer": zimmernummerValueArray[0]
                 },
                 {
@@ -307,7 +314,7 @@ module.exports = {
         }}
 
         setTimeout(function () {
-            db.imHausListeTest.find(
+            db.lechImHausListe.find(
                 {},
                 function (err, imHausListe) {
                     if (err) {
@@ -323,7 +330,7 @@ module.exports = {
     getImHausListe: function (req, res, db) {
         console.log("imHausListe get called");
 //Get guests from Mongo DB
-        db.imHausListeTest.find(function (err, imHausListe) {
+        db.lechImHausListe.find(function (err, imHausListe) {
             if (err) {
                 res.send(err);
             }

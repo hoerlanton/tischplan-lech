@@ -29,7 +29,7 @@ export class RestaurantComponent implements OnInit {
   }
 
   getStyle(j) {
-    if (j != "-") {
+    if (j.pinfo1Value != "" && j.pinfo2Value != "" && j.pinfo3Value != "" && j.pinfo4Value != "") {
       return "solid 3px red";
     } else {
       return "";

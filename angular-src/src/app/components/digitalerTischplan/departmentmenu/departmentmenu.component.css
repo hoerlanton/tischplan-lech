@@ -11,6 +11,7 @@ p {
   overflow: auto;
   margin: 0 0 0 20px;
   width: 200px;
+  padding: 0;
 }
 
 .row4 {
@@ -19,7 +20,7 @@ p {
   z-index: 1;
 }
 
-.showSonnbergZirbn, .showPanorama, .showRestaurant, .showWintergarten, .showAlle {
+.showRestaurant {
   padding: 10px;
 }
 

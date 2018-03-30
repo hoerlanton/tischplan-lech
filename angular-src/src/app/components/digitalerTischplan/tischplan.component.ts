@@ -10,8 +10,6 @@ import { ImHausListeComponent } from './im-haus-liste/im-haus-liste.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { TableplanComponent } from './tableplan/tableplan.component';
 import { DepartmentsComponent } from './departments/departments.component';
-import { NavService }   from '../../services/tables.service';
-import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'tischplan',
@@ -34,17 +32,8 @@ export class TischplanComponent {
   private navigationComponent: NavigationComponent;
   @ViewChild(TableplanComponent)
   private tableplanComponent: TableplanComponent;
-  subscription: Subscription;
   buttonBgColor1: string;
-  buttonBgColor2: string;
-  buttonBgColor3: string;
-  buttonBgColor4: string;
-  buttonBgColor5: string;
   fontColor1: string;
-  fontColor2: string;
-  fontColor3: string;
-  fontColor4: string;
-  fontColor5: string;
   buttonBgColorInfoForm: string;
   buttonBgColorNotizForm: string;
   fontColorInfoForm: string;
@@ -61,16 +50,10 @@ export class TischplanComponent {
   tracesListeElemente: any[] = [];
   tables: any[] = [];
   uniqueTables: any[] = [];
-  tablesSonnbergZirbn: Table[] = [];
-  tablesPanorama: Table[] = [];
   tablesRestaurant: Table[] = [];
-  tablesWintergarten: Table[] = [];
   filesToUpload: Array<File> = [];
   isDropped: any[] = [];
-  showSonnbergZirbnBool: boolean;
-  showPanoramaBool: boolean;
   showRestaurantBool: boolean;
-  showWintergartenBool: boolean;
   newInformationElements: any[] = [];
   dateGenerated: any;
   title: string;
@@ -101,13 +84,14 @@ export class TischplanComponent {
   erwPanorama: any[] = [];
   kiPanorama: any[] = [];
   erwRestaurant: any[] = [];
-  kiRestaurant: any[] = [];
+  ki1Restaurant: any[] = [];
+  ki2Restaurant: any[] = [];
+  ki3Restaurant: any[] = [];
+  ki4Restaurant: any[] = [];
   erwWintergarten: any[] = [];
   kiWintergarten: any[] = [];
 
   constructor(private tischplanService: TischplanService, private dragulaService: DragulaService) {
-    //this.subscription = this._navService.navItem$
-    //.subscribe(tables => this.tablesPanorama = tables);
     this.buttonBgColorInfoForm = "0a7a74";
     this.buttonBgColorNotizForm = "0a7a74";
     this.buttonBgColorShowTablePlan = "0a7a74";
@@ -116,21 +100,10 @@ export class TischplanComponent {
     this.fontColorShowTablePlan = "f3efe4";
     this.dateGeneratedListe = new Date();
     this.buttonBgColor1 = "0a7a74";
-    this.buttonBgColor2 = "0a7a74";
-    this.buttonBgColor3 = "0a7a74";
-    this.buttonBgColor4 = "0a7a74";
-    this.buttonBgColor5 = "0a7a74";
     this.fontColor1 = "f3efe4";
-    this.fontColor2 = "f3efe4";
-    this.fontColor3 = "f3efe4";
-    this.fontColor4 = "f3efe4";
-    this.fontColor5 = "f3efe4";
     this.tablesOccupied = 0;
     this.backgroundColor = "ffffff";
-    this.showSonnbergZirbnBool = false;
-    this.showPanoramaBool = false;
     this.showRestaurantBool = false;
-    this.showWintergartenBool = false;
     this.showAlleBool = false;
     this.term = "";
     this.tischplanService.getInformationElements()
@@ -148,10 +121,7 @@ export class TischplanComponent {
         if (informationElemente === null) {
           return;
         } else {
-
-          informationElemente.sort((a,b) => 0 - (a.numberOfTraces > b.numberOfTraces ? 1 : -1));
-
-
+          informationElemente.sort((a,b) => 0 - (a.numberOfInfos > b.numberOfInfos ? 1 : -1));
           this.newInformationEmployees = informationElemente;
           console.log(this.newInformationEmployees);
         }
@@ -231,20 +201,11 @@ export class TischplanComponent {
   }
   ngOnInit() {
   }
-  showWintergarten() {
-    this.departmentmenuComponent.showWintergarten();
-  }
   transform(term){
     this.departmentsComponent.transform(term);
   }
   showRestaurant() {
     this.departmentmenuComponent.showRestaurant();
-  }
-  showSonnbergZirbn() {
-    this.departmentmenuComponent.showWintergarten();
-  }
-  showPanorama() {
-    this.departmentmenuComponent.showPanorama();
   }
   sendInformation(event) {
     this.formComponent.sendInformation(event);
@@ -294,7 +255,7 @@ export class TischplanComponent {
       setTimeout(() => {
         //console.log('this.tablesWintergarten:');
         //console.log(this.tablesWintergarten);
-        this.tables = this.tablesWintergarten.concat(this.tablesRestaurant).concat(this.tablesPanorama).concat(this.tablesSonnbergZirbn);
+        this.tables = this.tablesRestaurant;
         //console.log('this.tables: in updateAzList');
         //console.log(this.tables);
         this.printComponent.formatAzListe(this.tables);
@@ -332,17 +293,7 @@ export class TischplanComponent {
           //console.log(sortedTablesWintergarten);
           //console.log(testTables);
           for (let a = 0; a < tables.length; a++) {
-            if (tables[a].department === "Panorama") {
-              this.tablesPanorama = tables[a].tables;
-            }
-            else if (tables[a].department === "Wintergarten") {
-              this.tablesWintergarten = tables[a].tables;
-              //console.log('Test' + JSON.stringify(this.tablesWintergarten));
-            }
-            else if (tables[a].department === "Sonnberg-Zirbn") {
-              this.tablesSonnbergZirbn = tables[a].tables;
-            }
-            else if (tables[a].department === "Restaurant") {
+             if (tables[a].department === "Restaurant") {
               this.tablesRestaurant = tables[a].tables;
             }
           }
@@ -353,7 +304,7 @@ export class TischplanComponent {
           this.changeBgColorIfAnreise();
         }
         this.tablesTempAbreise = tables;
-        this.tables = this.tablesWintergarten.concat(this.tablesRestaurant).concat(this.tablesPanorama).concat(this.tablesSonnbergZirbn);
+        this.tables = this.tablesRestaurant;
         this.printComponent.formatAzListe(this.tables);
         setTimeout(() => {
           this.tableplanComponent.sumUpPersonenAnzahl();

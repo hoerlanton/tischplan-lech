@@ -5,19 +5,35 @@
       <div *ngIf="!imHausListeElement.isAnreise">
         <div class='cards-container' id='container1' [dragula]='"evented-bag"'>
           <div class="card" id="card1" [ngStyle]="{'background-color': '#' + imHausListeElement.bgColor}">
-            <p> <b>Name:</b> {{imHausListeElement.name}}<br>
-              <b>Nation:</b> {{imHausListeElement.nation}}<br>
-              <b>Sprache:</b> {{imHausListeElement.sprache}}<br>
-              <b>Kategorie:</b> {{imHausListeElement.kat}}<br>
-              <b>Zimmernummer:</b> {{imHausListeElement.zimmernummer}}<br>
-              <b>Preis Typ:</b> {{imHausListeElement.pTyp}}<br>
-              <b>Anreise:</b> {{imHausListeElement.anreise}}<br>
-              <b>Abreise:</b> {{imHausListeElement.abreise}}<br>
-              <b>Personen Anzahl:</b> {{imHausListeElement.erwKi}}<br>
-              <b>Reisebüro:</b> {{imHausListeElement.rbSou}}<br>
-              <b>Notiz1:</b> {{imHausListeElement.notiz1}}<br>
-              <b>Notiz2:</b> {{imHausListeElement.notiz2}}<br>
-              <b>Trace:</b> {{imHausListeElement.trace}}<br>
+            <p>
+                <b>Zimmernummer:</b> {{imHausListeElement.zimmernummer}}<br>
+                <b>Anreise:</b> {{imHausListeElement.anreise}}<br>
+                <b>Abreise:</b> {{imHausListeElement.abreise}}<br>
+                <b>Personen Anzahl:</b> {{imHausListeElement.personenAnzahl}}<br>
+                <b>Name 1:</b> {{imHausListeElement.name1}}<br>
+                <b>NameFrau 1:</b> {{imHausListeElement.nameFrau1}}<br>
+                <b>Nation 1:</b> {{imHausListeElement.nation1}}<br>
+                <b>Pinfo 1:</b> {{imHausListeElement.pinfo1}}<br>
+                <b>Aufenthalte 1:</b> {{imHausListeElement.aufenthalte1}}<br>
+                <b>Letzter Aufenthalt 1:</b> {{imHausListeElement.letzterAufenthalt1}}<br>
+                <b>Name 2:</b> {{imHausListeElement.name2}}<br>
+                <b>NameFrau 2:</b> {{imHausListeElement.nameFrau2}}<br>
+                <b>Nation 2:</b> {{imHausListeElement.nation2}}<br>
+                <b>Pinfo 2:</b> {{imHausListeElement.pinfo2}}<br>
+                <b>Aufenthalte 2:</b> {{imHausListeElement.aufenthalte2}}<br>
+                <b>Letzter Aufenthalt 2:</b> {{imHausListeElement.letzterAufenthalt2}}<br>
+                <b>Name 3:</b> {{imHausListeElement.name3}}<br>
+                <b>NameFrau 3:</b> {{imHausListeElement.nameFrau3}}<br>
+                <b>Nation 3:</b> {{imHausListeElement.nation3}}<br>
+                <b>Pinfo 3:</b> {{imHausListeElement.pinfo3}}<br>
+                <b>Aufenthalte 3:</b> {{imHausListeElement.aufenthalte3}}<br>
+                <b>Letzter Aufenthalt 3:</b> {{imHausListeElement.letzterAufenthalt3}}<br>
+                <b>Name 4:</b> {{imHausListeElement.name4}}<br>
+                <b>NameFrau 4:</b> {{imHausListeElement.nameFrau4}}<br>
+                <b>Nation 4:</b> {{imHausListeElement.nation4}}<br>
+                <b>Pinfo 4:</b> {{imHausListeElement.pinfo4}}<br>
+                <b>Aufenthalte 4:</b> {{imHausListeElement.aufenthalte4}}<br>
+                <b>Letzter Aufenthalt 4:</b> {{imHausListeElement.letzterAufenthalt4}}<br>
             </p>
             <div *ngIf="imHausListeElement.bgColor === '0a7a74'">
               <i class="fa fa-check" style="float: right; color: white"></i>
@@ -43,19 +59,35 @@
       <div *ngIf="imHausListeElement.isAnreise">
         <div class='cards-container' id='container2' [dragula]='"evented-bag"'>
           <div class="card" id="card2" [ngStyle]="{'background-color': '#' + imHausListeElement.bgColor}">
-            <p> <b>Name:</b> {{imHausListeElement.name}}<br>
-              <b>Nation:</b> {{imHausListeElement.nation}}<br>
-              <b>Sprache:</b> {{imHausListeElement.sprache}}<br>
-              <b>Kategorie:</b> {{imHausListeElement.kat}}<br>
+            <p>
               <b>Zimmernummer:</b> {{imHausListeElement.zimmernummer}}<br>
-              <b>Preis Typ:</b> {{imHausListeElement.pTyp}}<br>
               <b>Anreise:</b> {{imHausListeElement.anreise}}<br>
               <b>Abreise:</b> {{imHausListeElement.abreise}}<br>
-              <b>Personen Anzahl:</b> {{imHausListeElement.erwKi}}<br>
-              <b>Reisebüro:</b> {{imHausListeElement.rbSou}}<br>
-              <b>Notiz1:</b> {{imHausListeElement.notiz1}}<br>
-              <b>Notiz2:</b> {{imHausListeElement.notiz2}}<br>
-              <b>Trace:</b> {{imHausListeElement.trace}}<br>
+              <b>Personen Anzahl:</b> {{imHausListeElement.personenAnzahl}}<br>
+              <b>Name 1:</b> {{imHausListeElement.name1}}<br>
+              <b>NameFrau 1:</b> {{imHausListeElement.nameFrau1}}<br>
+              <b>Nation 1:</b> {{imHausListeElement.nation1}}<br>
+              <b>Pinfo 1:</b> {{imHausListeElement.pinfo1}}<br>
+              <b>Aufenthalte 1:</b> {{imHausListeElement.aufenthalte1}}<br>
+              <b>Letzter Aufenthalt 1:</b> {{imHausListeElement.letzterAufenthalt1}}<br>
+              <b>Name 2:</b> {{imHausListeElement.name2}}<br>
+              <b>NameFrau 2:</b> {{imHausListeElement.nameFrau2}}<br>
+              <b>Nation 2:</b> {{imHausListeElement.nation2}}<br>
+              <b>Pinfo 2:</b> {{imHausListeElement.pinfo2}}<br>
+              <b>Aufenthalte 2:</b> {{imHausListeElement.aufenthalte2}}<br>
+              <b>Letzter Aufenthalt 2:</b> {{imHausListeElement.letzterAufenthalt2}}<br>
+              <b>Name 3:</b> {{imHausListeElement.name3}}<br>
+              <b>NameFrau 3:</b> {{imHausListeElement.nameFrau3}}<br>
+              <b>Nation 3:</b> {{imHausListeElement.nation3}}<br>
+              <b>Pinfo 3:</b> {{imHausListeElement.pinfo3}}<br>
+              <b>Aufenthalte 3:</b> {{imHausListeElement.aufenthalte3}}<br>
+              <b>Letzter Aufenthalt 3:</b> {{imHausListeElement.letzterAufenthalt3}}<br>
+              <b>Name 4:</b> {{imHausListeElement.name4}}<br>
+              <b>NameFrau 4:</b> {{imHausListeElement.nameFrau4}}<br>
+              <b>Nation 4:</b> {{imHausListeElement.nation4}}<br>
+              <b>Pinfo 4:</b> {{imHausListeElement.pinfo4}}<br>
+              <b>Aufenthalte 4:</b> {{imHausListeElement.aufenthalte4}}<br>
+              <b>Letzter Aufenthalt 4:</b> {{imHausListeElement.letzterAufenthalt4}}<br>
             </p>
             <div *ngIf="imHausListeElement.bgColor === '0a7a74'">
               <i class="fa fa-check" style="float: right; color: white"></i>

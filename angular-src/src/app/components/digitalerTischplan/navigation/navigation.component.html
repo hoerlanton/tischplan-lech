@@ -15,13 +15,13 @@
       </ul>
     </div>
     <div class="btn-group" dropdown>
-      <button dropdownToggle class="btn btn-primary dropdown-toggle" type="button">XLS<i class="fa fa-upload" aria-hidden="true"></i><span class="caret"></span>
+      <button dropdownToggle class="btn btn-primary dropdown-toggle" type="button">CSV<i class="fa fa-upload" aria-hidden="true"></i><span class="caret"></span>
       </button>
       <ul *dropdownMenu class="dropdown-menu" style="padding: 10px; height: auto" role="menu">
-        <div class="xls" (click)="none($event)" ><h6 >XLS-Datei hochladen</h6>
+        <div class="xls" (click)="none($event)" ><h6 >CSV-Datei hochladen</h6>
           <form class="SendMessage" (submit)="sendMessage($event)">
             <input type="file" style="max-width: 160px; min-height: 50px" (change)="fileChangeEvent($event)" placeholder="Upload file..." />
-            <button type="button" class="btn btn-send" (click)="upload()">XLS hochladen</button>
+            <button type="button" class="btn btn-send" (click)="upload()">CSV hochladen</button>
           </form>
         </div>
       </ul>
@@ -35,7 +35,7 @@
       <ul *dropdownMenu class="dropdown-menu" role="menu" style="padding: 0">
         <div *ngFor="let newInformationEmployee of newInformationEmployees; let j = index;">
 
-          <li role="menuitem" class="menuitem" (click)="none($event)"> <b>Name: </b> {{newInformationEmployee.employee}} <br><b>Punkte: </b> {{newInformationEmployee.numberOfTraces}}</li>
+          <li role="menuitem" class="menuitem" (click)="none($event)"> <b>Name: </b> {{newInformationEmployee.employee}} <br><b>Punkte: </b> {{newInformationEmployee.numberOfInfos}}</li>
           <li class="divider dropdown-divider"></li>
         </div>
       </ul>
@@ -43,11 +43,13 @@
     <div class="btn-group" dropdown>
       <button dropdownToggle class="btn btn-primary dropdown-toggle" type="button">Abreisen <i class="fa fa-calendar-check-o" aria-hidden="true"></i><span class="caret"></span>
       </button>
-      <ul *dropdownMenu class="dropdown-menu" role="menu" style="max-height: 100px; padding: 0">
+      <ul *dropdownMenu class="dropdown-menu" role="menu" style="max-height: 130px; padding: 0">
         <li role="menuitem" class="menuitem" (mouseenter)="mouseEnterAbreiseAbbrechenButton()"  (mouseleave)="mouseLeaveAbreiseAbbrechenButton()" [ngStyle]="{'background-color': '#' + abreiseAbbrechenButton}" style="color: black;">Abbrechen</li>
         <li class="divider dropdown-divider" style="margin: 0"></li>
-          <li role="menuitem" class="menuitem" (mouseenter)="mouseEnterAbreiseAusfuehrenButton()"  (mouseleave)="mouseLeaveAbreiseAusfuehrenButton()" [ngStyle]="{'background-color': '#' + abreiseAusfuehrenButton}" style="color: white;" (click)="dispenseIfAbreise()"><b> Abreisen für Morgen entfernen</b></li>
-          <li class="divider dropdown-divider" style="margin: 0"></li>
+        <li role="menuitem" class="menuitem" style="background-color: red; color: white;" (mouseenter)="mouseEnterAbreiseAusfuehrenButton()"  (mouseleave)="mouseLeaveAbreiseAusfuehrenButton()" [ngStyle]="{'background-color': '#' + abreiseAusfuehrenButton}" style="color: white;" (click)="dispenseIfAbreiseHeute()"><b> Abreisen für Heute entfernen</b></li>
+        <li class="divider dropdown-divider" style="margin: 0"></li>
+        <li role="menuitem" class="menuitem" style="background-color: red; color: white;" (mouseenter)="mouseEnterAbreiseMorgenAusfuehrenButton()"  (mouseleave)="mouseLeaveAbreiseMorgenAusfuehrenButton()" [ngStyle]="{'background-color': '#' + abreiseAusfuehrenMorgenButton}" style="color: white;" (click)="dispenseIfAbreiseMorgen()"><b> Abreisen für Morgen entfernen</b></li>
+        <li class="divider dropdown-divider" style="margin: 0"></li>
       </ul>
     </div>
      <div class="btn-group" dropdown>
@@ -84,7 +86,7 @@
       </div>
       <button type="submit" class="btn search-btn-default" ><i class="fa fa-search" aria-hidden="true"></i></button>
     </form>
-    <li class="partnerLi" ><img class="Partner" alt="Partner" href="http://www.salzburgerhof.servicio.io/wlanlandingpage" src="http://servicio.io/wp-content/uploads/2018/01/SalzburgerHof_Marke_RGB.jpg" ></li>
+    <li class="partnerLi" ><img class="Partner" alt="Partner" src="http://servicio.io/wp-content/uploads/2018/03/logo-hotel-lech.png" ></li>
   </ul>
   </div>
 </nav>

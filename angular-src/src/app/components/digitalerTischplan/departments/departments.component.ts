@@ -1,16 +1,12 @@
 import { Component, OnInit, Input, ViewChild, Output, EventEmitter, Injectable, AfterViewInit, AfterViewChecked, ChangeDetectorRef  } from '@angular/core';
 import { TischplanService } from '../../../services/tischplan.service';
 import { Table } from '../../../../../Table';
-import { WintergartenComponent } from './wintergarten/wintergarten.component';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { NavService }   from '../../../services/tables.service';
 import { TischplanComponent } from '../tischplan.component';
 import { DragulaService } from "ng2-dragula";
 import { Http, Headers } from '@angular/http';
-import {AlleComponent} from "./alle/alle.component";
-import {PanoramaComponent} from "./panorama/panorama.component";
 import {RestaurantComponent} from "./restaurant/restaurant.component";
-import {SonnbergZirbnComponent} from "./sonnberg-zirbn/sonnberg-zirbn.component";
 
 @Component({
   selector: 'app-departments',
@@ -20,41 +16,18 @@ import {SonnbergZirbnComponent} from "./sonnberg-zirbn/sonnberg-zirbn.component"
 
 export class DepartmentsComponent {
 
-  @Input('tablesWintergarten') tablesWintergarten: Table[];
-  @Input('showWintergartenBool') showWintergartenBool: boolean;
-  @Input('tablesSonnbergZirbn') tablesSonnbergZirbn: Table[];
-  @Input('showSonnbergZirbnBool') showSonnbergZirbnBool: boolean;
-  @Input() tablesPanorama: Table[];
   @Input('tables') tables: any;
-  @Input('showPanoramaBool') showPanoramaBool: boolean;
   @Input('tablesRestaurant') tablesRestaurant: Table[];
   @Input('showRestaurantBool') showRestaurantBool: boolean;
   @Input('showAlleBool') showAlleBool: boolean;
   @Input() tablesTempAbreise: any;
   @Input('term') term: string;
-  @ViewChild(AlleComponent)
-  private alleComponent: AlleComponent;
-
-  @ViewChild(PanoramaComponent)
-  private panoramaComponent: PanoramaComponent;
 
   @ViewChild(RestaurantComponent)
   private restaurantComponent: RestaurantComponent;
 
-  @ViewChild(WintergartenComponent)
-  private wintergartenComponent: WintergartenComponent;
-
-  @ViewChild(SonnbergZirbnComponent)
-  private sonnbergZirbnComponent: SonnbergZirbnComponent;
-
-  @Output()
-  dispensedSonnbergZirbn:EventEmitter<any> = new EventEmitter();
   @Output()
   dispensedRestaurant:EventEmitter<any> = new EventEmitter();
-  @Output()
-  dispensedWintergarten:EventEmitter<any> = new EventEmitter();
-  @Output()
-  dispensedPanorama:EventEmitter<any> = new EventEmitter();
   @Output()
   updateAzList:EventEmitter<any> = new EventEmitter();
   @Output()
@@ -97,16 +70,9 @@ export class DepartmentsComponent {
             return 1;
           return 0;
         });
-            if (response[0].tables[j].department === "Sonnberg-Zirbn") {
-              this.dispensedSonnbergZirbn.emit(response[0].tables);
-            } else if (response[0].tables[j].department === "Panorama") {
-              this.dispensedPanorama.emit(response[0].tables);
-            } else if (response[0].tables[j].department === "Restaurant") {
-              this.dispensedRestaurant.emit(response[0].tables);
-            } else if (response[0].tables[j].department === "Wintergarten") {
-              this.dispensedWintergarten.emit(response[0].tables);
-              console.log("Wintergarten" + JSON.stringify(response[0].tables));
-            }
+             if (response[0].tables[j].department === "Restaurant") {
+               this.dispensedRestaurant.emit(response[0].tables);
+             }
         }
       setTimeout(() => {
         this.updateAzList.emit();
@@ -123,17 +89,8 @@ export class DepartmentsComponent {
         return;
       } else {
         {
-          if (response[0].tables[j].department === "Sonnberg-Zirbn") {
-            this.tablesSonnbergZirbn[j].placeholder = response[0].tables[j].placeholder;
-          }
-          else if (response[0].tables[j].department === "Panorama") {
-            this.tablesPanorama[j].placeholder = response[0].tables[j].placeholder;
-          }
-          else if (response[0].tables[j].department === "Restaurant") {
+           if (response[0].tables[j].department === "Restaurant") {
             this.tablesRestaurant[j].placeholder = response[0].tables[j].placeholder;
-          }
-          else if (response[0].tables[j].department === "Wintergarten") {
-            this.tablesWintergarten[j].placeholder = response[0].tables[j].placeholder;
           }
         }
       }
@@ -150,17 +107,8 @@ export class DepartmentsComponent {
           if (response === null) {
             return;
           } else {
-            if (response[0].department === "Sonnberg-Zirbn") {
-              this.dispensedSonnbergZirbn.emit(response[0].tables);
-            }
-            else if (response[0].department === "Panorama") {
-              this.dispensedPanorama.emit(response[0].tables);
-            }
-            else if (response[0].department === "Restaurant") {
+             if (response[0].department === "Restaurant") {
               this.dispensedRestaurant.emit(response[0].tables);
-            }
-            else if (response[0].department === "Wintergarten") {
-              this.dispensedWintergarten.emit(response[0].tables);
             }
           }
         }
@@ -181,17 +129,8 @@ export class DepartmentsComponent {
         if (response === null) {
           return;
         } else {
-          if (response.tables[0].department === "Sonnberg-Zirbn") {
-            this.tablesSonnbergZirbn[arrayIndex] = response.tables[0];
-          }
-          else if (response.tables[0].department === "Panorama") {
-            this.tablesPanorama[arrayIndex] = response.tables[0];
-          }
-          else if (response.tables[0].department === "Restaurant") {
+           if (response.tables[0].department === "Restaurant") {
             this.tablesRestaurant[arrayIndex] = response.tables[0];
-          }
-          else if (response.tables[0].department === "Wintergarten") {
-            this.tablesWintergarten[arrayIndex] = response.tables[0];
           }
         }
         this.updateAzList.emit();
@@ -230,24 +169,7 @@ export class DepartmentsComponent {
               //console.log('Parsed Date --->: ' + this.parsedDate[0]);
               //console.log('this.dateGenerated --->: ' + dateToday);
               if (dateToday.indexOf(this.parsedDate[0]) !== -1) {
-                if (this.tablesChangeBgColorIfAnreise[a].department === "Panorama") {
-                  //console.log(this.tablesPanorama);
-                  if (this.tablesPanorama[b]) {
-                    //console.log(this.tablesPanorama[b]);
-                    this.tablesPanorama[b].bgColor = "#0a7a74";
-                  }
-                }
-                else if (this.tablesChangeBgColorIfAnreise[a].department === "Wintergarten") {
-                  if (this.tablesWintergarten[b]) {
-                    this.tablesWintergarten[b].bgColor = "#0a7a74";
-                  }
-                }
-                else if (this.tablesChangeBgColorIfAnreise[a].department === "Sonnberg-Zirbn") {
-                  if (this.tablesSonnbergZirbn[b]) {
-                    this.tablesSonnbergZirbn[b].bgColor = "#0a7a74";
-                  }
-                }
-                else if (this.tablesChangeBgColorIfAnreise[a].department === "Restaurant") {
+                 if (this.tablesChangeBgColorIfAnreise[a].department === "Restaurant") {
                   if (this.tablesRestaurant[b]) {
                     this.tablesRestaurant[b].bgColor = "#0a7a74";
                   }
@@ -261,17 +183,8 @@ export class DepartmentsComponent {
   }
 
   transform(term) {
-      if (this.showPanoramaBool) {
-      this.panoramaComponent.transform(this.tablesPanorama, term);
-       } else if (this.showRestaurantBool) {
+        if (this.showRestaurantBool) {
        this.restaurantComponent.transform(this.tablesRestaurant, term);
-       } else if (this.showWintergartenBool) {
-       this.wintergartenComponent.transform(this.tablesWintergarten, term);
-       } else if (this.showSonnbergZirbnBool) {
-       this.sonnbergZirbnComponent.transform(this.tablesSonnbergZirbn, term);
-       } else if (this.showAlleBool) {
-        this.alleComponent.transform(this.tables, term);
-
-      }
+       }
     }
 }
