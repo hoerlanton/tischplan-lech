@@ -1,6 +1,6 @@
 module.exports = {
     addTable: function (db, tableNumber, departmentValue, topValue, leftValue, height, width) {
-        if (tableNumber === '1' && topValue === '500' && leftValue === '30' && width === '60') {
+        if (tableNumber === '1' && topValue === '850' && leftValue === '20' && width === '70') {
             db.lechTables.update(
                 {
                     department: departmentValue,
@@ -8,7 +8,8 @@ module.exports = {
                 },
                 {
                     $set: {
-                        "tables.$.width": "90",
+                        "tables.$.height": "140",
+                        "tables.$.topValue": "750",
                     }
                 }, function (err, tables) {
                     if (err) {

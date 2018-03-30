@@ -1,6 +1,6 @@
 module.exports = {
     removeTable: function (db, tableNumber, departmentValue, topValue, leftValue, height, width) {
-     if (tableNumber === '1' && topValue === '500' && leftValue === '30' && width === '90') {
+        if (tableNumber === '1' && topValue === '750' && leftValue === '20' && height === '140') {
          db.lechTables.update(
              {
                  department: departmentValue,
@@ -8,7 +8,8 @@ module.exports = {
              },
              {
                  $set: {
-                     "tables.$.width": "60",
+                     "tables.$.height": "70",
+                     "tables.$.topValue": "850",
                  }
              }, function (err, tables) {
                  if (err) {
@@ -22,18 +23,18 @@ module.exports = {
              }, {
                  $push: {
                      tables: {
-                         $each: [{
-                             "arrayIndex": "1",
+                         $each: [    {
+                             "arrayIndex": "0",
                              "department": "Restaurant",
                              "number": "2",
-                             "topValue": "500",
-                             "leftValue": "120",
+                             "topValue": "750",
+                             "leftValue": "20",
                              "bgColor": "#ffffff",
                              "isBesetzt": "false",
                              "placeholder": "true",
                              "border": "solid 3px #f3efe4",
-                             "width": "30",
-                             "height": "50",
+                             "width": "70",
+                             "height": "70"
                          }],
                          $sort: {number: 1}
                      }
