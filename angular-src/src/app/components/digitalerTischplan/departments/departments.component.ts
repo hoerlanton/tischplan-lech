@@ -70,15 +70,27 @@ export class DepartmentsComponent {
             return 1;
           return 0;
         });
-             if (response[0].tables[j].department === "Restaurant") {
-               this.dispensedRestaurant.emit(response[0].tables);
-             }
+        if (response[0].tables[j].department === "Restaurant") {
+          this.dispensedRestaurant.emit(response[0].tables);
         }
-      setTimeout(() => {
-        this.updateAzList.emit();
-        this.updateImHausListeElement.emit(table);
-      }, 2000);
-
+      }
+    }, error => console.log("Error: ", error),
+        () => {
+          console.log(table);
+          this.updateAzList.emit();
+          if (table.length > 1) {
+            for (let i = 0; i < table.length; i++) {
+              this.updateImHausListeElement.emit(table[i].table);
+            }
+          } else {
+            console.log("______________________________");
+            if (table.constructor === Array) {
+              console.log("isarray");
+              this.updateImHausListeElement.emit(table[0].table);
+            } else {
+              this.updateImHausListeElement.emit(table);
+            }
+          }
     });
 
     this.tischplanService.addPlaceholder(table).subscribe(response => {

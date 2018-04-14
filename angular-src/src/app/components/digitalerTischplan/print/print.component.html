@@ -188,10 +188,19 @@
       <div *ngFor="let tableRestaurant of tablesRestaurant; let j = index;">
         <div dropdownToggle type="button" class="t{{tableRestaurant.number}} table-item" [ngStyle]="{'top': tableRestaurant.topValue + 'px', 'left': tableRestaurant.leftValue + 'px', 'background-color': + tableRestaurant.bgColor, 'height': + tableRestaurant.height + 'px', 'width': + tableRestaurant.width + 'px', 'border': + tableRestaurant.border}" [style.border]="getStyle(tablesRestaurant[j].groups)" dropdown>
           <div *ngIf="tablesRestaurant[j] !== tablesRestaurant[j+1]">
-            <p><b>{{tableRestaurant.number}} <br>{{erwRestaurant[j]}}/{{ki1Restaurant[j]}}/{{ki2Restaurant[j]}}/{{ki3Restaurant[j]}}/{{ki4Restaurant[j]}}</b></p>
+            <div *ngFor="let group of tableRestaurant.groups">
+              <div *ngIf="group.name1Value">
+                {{group.name1Value}}{{erwRestaurant[j]}}/{{ki1Restaurant[j]}}/{{ki2Restaurant[j]}}/{{ki3Restaurant[j]}}/{{ki4Restaurant[j]}}
+              </div>
+            </div>
           </div>
         </div>
       </div>
+      <div class="buffet"></div>
+      <div class="wall1"></div>
+      <div class="wall2"></div>
+      <div class="wall3"></div>
+      <div class="wall4"></div>
     </div>
   </div>
 </div>
