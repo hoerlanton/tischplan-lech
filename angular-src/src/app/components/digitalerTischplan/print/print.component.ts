@@ -17,8 +17,6 @@ export class PrintComponent {
   @Input('erwRestaurant') erwRestaurant: string;
   @Input('ki1Restaurant') ki1Restaurant: string;
   @Input('ki2Restaurant') ki2Restaurant: string;
-  @Input('ki3Restaurant') ki3Restaurant: string;
-  @Input('ki4Restaurant') ki4Restaurant: string;
 
   @Output()
   getTablesOccupied:EventEmitter<number> = new EventEmitter();
@@ -78,7 +76,6 @@ export class PrintComponent {
 
     //console.log("this.tableTemp");
     //console.log(this.tableTemp);
-
 
     this.tables =  this.tableTemp.sort(function(a, b) {
       let nameA = "";

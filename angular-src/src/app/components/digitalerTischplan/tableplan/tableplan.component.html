@@ -5,7 +5,7 @@
         <div *ngFor="let tableRestaurant of tablesRestaurant; let j = index;">
           <div dropdownToggle type="button" class="t{{tableRestaurant.number}} table-item" [ngStyle]="{'top': tableRestaurant.topValue + 'px', 'left': tableRestaurant.leftValue + 'px', 'background-color': + tableRestaurant.bgColor, 'height': + tableRestaurant.height + 'px', 'width': + tableRestaurant.width + 'px', 'border': + tableRestaurant.border}" [style.border]="getStyle(tablesRestaurant[j].groups)" dropdown>
             <div *ngIf="tablesRestaurant[j] !== tablesRestaurant[j+1]">
-              <b>{{tableRestaurant.number}} <br>{{erwRestaurant[j]}}/{{ki1Restaurant[j]}}/{{ki2Restaurant[j]}}/{{ki3Restaurant[j]}}/{{ki4Restaurant[j]}}</b>
+              <b>{{tableRestaurant.number}} <br>{{erwRestaurant[j]}}/{{ki1Restaurant[j]}}/{{ki2Restaurant[j]}}</b>
             </div>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <div dropdownToggle type="button" style="color: white; padding: 10px;" (mouseenter)="mouseEnterMoveTableButton()"  (mouseleave)="mouseLeaveMoveTableButton()" [ngStyle]="{'background-color': '#' + buttonMoveTable}" (click)="none($event)" class="dropdownMoveTable" dropdown><b>Tisch verschieben</b>
@@ -20,35 +20,16 @@
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="max-height: 240px; padding: 10px; overflow: auto">
                   <div *ngFor="let group of tableRestaurant.groups">
                     <div *ngIf="group.name1Value">
-                      <div class="dropdown-item" [style.border]="getStyleInfo(group)">
+                      <div class="dropdown-item" [style.border]="getStyleInfo(group.pinfo1Value)">
                         <b> Zimmernummer:</b> {{group.zimmernummerValue}}<br>
                         <b> Anreise Datum:</b> {{group.anreiseValue}}<br>
                         <b> Abreise Datum:</b> {{group.abreiseValue}}<br>
                         <b> Personenanzahl:</b> {{group.personenAnzahlValue}}<br>
                         <b> Name 1:</b> {{group.name1Value}}<br>
-                        <b> Name Frau 1:</b> {{group.nameFrau1Value}}<br>
-                        <b> Nation 1:</b> {{group.nation1Value}}<br>
                         <b> Info 1:</b> {{group.pinfo1Value}}<br>
-                        <b> Anzahl der Aufenthalte 1:</b> {{group.aufenthalte1Value}}<br>
-                        <b> Letzter Aufenthalt 1:</b> {{group.letzterAufenthalt1Value}}<br>
-                        <b> Name 2:</b> {{group.name2Value}}<br>
-                        <b> Name Frau 2:</b> {{group.nameFrau2Value}}<br>
-                        <b> Nation 2:</b> {{group.nation2Value}}<br>
                         <b> Info 2:</b> {{group.pinfo2Value}}<br>
-                        <b> Anzahl der Aufenthalte 2:</b> {{group.aufenthalte2Value}}<br>
-                        <b> Letzter Aufenthalt 2:</b> {{group.letzterAufenthalt2Value}}<br>
-                        <b> Name 3:</b> {{group.name3Value}}<br>
-                        <b> Name Frau 3:</b> {{group.nameFrau3Value}}<br>
-                        <b> Nation 3:</b> {{group.nation3Value}}<br>
                         <b> Info 3:</b> {{group.pinfo3Value}}<br>
-                        <b> Anzahl der Aufenthalte 3:</b> {{group.aufenthalte3Value}}<br>
-                        <b> Letzter Aufenthalt 3:</b> {{group.letzterAufenthalt3Value}}<br>
-                        <b> Name 4:</b> {{group.name4Value}}<br>
-                        <b> Name Frau 4:</b> {{group.nameFrau4Value}}<br>
-                        <b> Nation 4:</b> {{group.nation4Value}}<br>
-                        <b> Info 4:</b> {{group.pinfo4Value}}<br>
-                        <b> Anzahl der Aufenthalte 4:</b> {{group.aufenthalte4Value}}<br>
-                        <b> Letzter Aufenthalt 4:</b> {{group.letzterAufenthalt4Value}}<br></div>
+                        <b> Kategorie:</b> {{group.kategorieValue}}<br></div>
                       <li class="divider dropdown-divider" style="padding: 0 0 0 0"></li>
                     </div>
                     <div *ngIf="group.newInfoText">
@@ -68,7 +49,6 @@
           </div>
         </div>
       </div>
-      <div class="buffet"></div>
       <div class="wall1"></div>
       <div class="wall2"></div>
       <div class="wall3"></div>

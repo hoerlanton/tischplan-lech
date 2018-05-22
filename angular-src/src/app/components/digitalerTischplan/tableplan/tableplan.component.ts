@@ -124,7 +124,7 @@ export class TableplanComponent implements AfterViewInit {
       for (let b = 0; b < a.length; b++) {
         //console.log("LOOOOOOOOOOOOOOP");
         //console.log(a[b].InfoValue);
-        if (a[b].pinfo1Value != "" || a[b].pinfo2Value != "" || a[b].pinfo3Value != "" || a[b].pinfo4Value != "" || a[b].newInfoText) {
+        if (a[b].pinfo1Value != "" || a[b].pinfo2Value != "" || a[b].pinfo3Value != "" || a[b].newInfoText) {
           this.Info = true;
         }
       }
@@ -202,7 +202,7 @@ export class TableplanComponent implements AfterViewInit {
   }
 
   getStyleInfo(j) {
-    if (j != "-") {
+    if (j != "") {
       return "solid 3px red";
     } else {
       return "";
@@ -216,8 +216,6 @@ export class TableplanComponent implements AfterViewInit {
         this.erwRestaurant[p] = 0;
         this.ki1Restaurant[p] = 0;
         this.ki2Restaurant[p] = 0;
-        this.ki3Restaurant[p] = 0;
-        this.ki4Restaurant[p] = 0;
         if (this.tablesRestaurant[p].groups) {
           for (let g = 0; g < this.tablesRestaurant[p].groups.length; g++) {
             if (this.tablesRestaurant[p].groups[g].personenAnzahlValue) {
@@ -227,8 +225,6 @@ export class TableplanComponent implements AfterViewInit {
                 this.erwRestaurant[p] = this.erwRestaurant[p] + Number(erwKi[0]);
                 this.ki1Restaurant[p] = this.ki1Restaurant[p] + Number(erwKi[1]);
                 this.ki2Restaurant[p] = this.ki2Restaurant[p] + Number(erwKi[2]);
-                this.ki3Restaurant[p] = this.ki3Restaurant[p] + Number(erwKi[3]);
-                this.ki4Restaurant[p] = this.ki4Restaurant[p] + Number(erwKi[4]);
                 //console.log(this.erw[p]);
               }
             }
@@ -239,7 +235,5 @@ export class TableplanComponent implements AfterViewInit {
     this.erwRestaurantExport.emit(this.erwRestaurant);
     this.ki1RestaurantExport.emit(this.ki1Restaurant);
     this.ki2RestaurantExport.emit(this.ki2Restaurant);
-    this.ki3RestaurantExport.emit(this.ki3Restaurant);
-    this.ki4RestaurantExport.emit(this.ki4Restaurant);
   }
 }

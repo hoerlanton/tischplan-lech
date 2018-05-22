@@ -154,8 +154,8 @@ module.exports = {
             console.log("Liste");
             console.log(informationElements2[informationElements2Length - 1][0]);
 
-            departmentValue = informationElements2[informationElements2Length - 1][0].substring(1, informationElements2[informationElements2Length - 1][0].length - 1).replace(new RegExp("[0-9]", "g"), "").replace(/\W/g, '');
-            tableValueArray = informationElements2[informationElements2Length - 1][0].toString().match(/\d+/);
+            departmentValue = informationElements2[informationElements2Length - 1][0].substring(1, informationElements2[informationElements2Length - 1][0].length - 1).replace(new RegExp("[0-9]", "g"), "").replace(/\W/g, '').replace(/[A-Z\s]/g, '');
+            tableValueArray = informationElements2[informationElements2Length - 1][0].toString().match(/[A-Z\s]+\d+/g);
             tableValue = tableValueArray[0];
 
         } else {
@@ -171,7 +171,7 @@ module.exports = {
             console.log(departmentValueDB);
         }
 
-        if (departmentValue === "Restaurant") {
+        if (departmentValue === "restaurant") {
             departmentValueDB = "Restaurant";
         }
 

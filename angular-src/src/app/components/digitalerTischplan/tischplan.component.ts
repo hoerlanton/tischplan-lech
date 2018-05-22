@@ -86,8 +86,6 @@ export class TischplanComponent {
   erwRestaurant: any[] = [];
   ki1Restaurant: any[] = [];
   ki2Restaurant: any[] = [];
-  ki3Restaurant: any[] = [];
-  ki4Restaurant: any[] = [];
   erwWintergarten: any[] = [];
   kiWintergarten: any[] = [];
 
@@ -161,7 +159,7 @@ export class TischplanComponent {
     let [e, el] = args;
     //console.log("Args = ");
     let information = args[0].innerText;
-    //console.log("information: " + information);
+    console.log("information: " + information);
     let informationElements = information.split(/\n/);
     //console.log(informationElements);
     let informationElements2 = [];
@@ -177,13 +175,13 @@ export class TischplanComponent {
     let departementSubstring = department.substring(1, department.length - 1);
     //console.log("departementSubstring" + departementSubstring);
     let tableNumber = args[1].innerText;
-    let numbers = tableNumber.match(/\d+/g);
-    //console.log("numbers: " + numbers);
+    let numbers = tableNumber.match(/[A-Z\s]+\d+/g);
+    console.log("numbers: " + numbers);
     let arrayIndex = numbers[1];
     //console.log("arrayIndex: " + arrayIndex);
     let tableNumberSubstring = "";
     //console.log("tableNumber" + tableNumber);
-    tableNumberSubstring = tableNumber.toString().match(/\d+/);
+    tableNumberSubstring = numbers[0].substring(1, numbers[0].length);
     //console.log("tableNumberSubstring" + tableNumberSubstring);
     let dataString = [];
     dataString.push(information + departementSubstring + tableNumberSubstring);
@@ -269,40 +267,46 @@ export class TischplanComponent {
       .subscribe(tables => {
         if (tables === null) {
           return;
-        } else {
-          //console.log("tables[3].tables");
-          //console.log(JSON.parse(tables[3].tables));
-          for (let x = 0; x < tables.length; x++){
-            //console.log("tables[x].department");
-            //console.log(tables[x].department);
-            if (tables[x].department === "Restaurant") {
-              tables[x].tables.sort(function (a, b) {
-                //console.log(a.number);
-                //console.log(b.number);
-                if (Number(a.number) < Number(b.number))
-                  return -1;
-                if (Number(a.number) > Number(b.number))
-                  return 1;
-                return 0;
-              });
-            }
-            }
-          //console.log('sorted?:');
-          //console.log(sortedArray);
-          //console.log(tables[3].tables);
-          //console.log(sortedTablesWintergarten);
-          //console.log(testTables);
-          for (let a = 0; a < tables.length; a++) {
-             if (tables[a].department === "Restaurant") {
-              this.tablesRestaurant = tables[a].tables;
-            }
-          }
-          //console.log(this.tablesPanorama);
-          //console.log(this.tablesWintergarten);
-          //console.log(this.tablesSonnbergZirbn);
-          //console.log(this.tablesRestaurant);
-          this.changeBgColorIfAnreise();
         }
+        /*
+         } else {
+         //console.log("tables[3].tables");
+         //console.log(JSON.parse(tables[3].tables));
+         for (let x = 0; x < tables.length; x++){
+         //console.log("tables[x].department");
+         //console.log(tables[x].department);
+
+         if (tables[x].department === "Restaurant") {
+         tables[x].tables.sort(function (a, b) {
+         //console.log(a.number);
+         //console.log(b.number);
+         if (Number(a.number) < Number(b.number))
+         return -1;
+         if (Number(a.number) > Number(b.number))
+         return 1;
+         return 0;
+         });
+
+         }
+
+         }
+         */
+        //console.log('sorted?:');
+        //console.log(sortedArray);
+        //console.log(tables[3].tables);
+        //console.log(sortedTablesWintergarten);
+        //console.log(testTables);
+        for (let a = 0; a < tables.length; a++) {
+          if (tables[a].department === "Restaurant") {
+            this.tablesRestaurant = tables[a].tables;
+          }
+        }
+        //console.log(this.tablesPanorama);
+        //console.log(this.tablesWintergarten);
+        //console.log(this.tablesSonnbergZirbn);
+        //console.log(this.tablesRestaurant);
+        this.changeBgColorIfAnreise();
+      //}
         this.tablesTempAbreise = tables;
         this.tables = this.tablesRestaurant;
         this.printComponent.formatAzListe(this.tables);
