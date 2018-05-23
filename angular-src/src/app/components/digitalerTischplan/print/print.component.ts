@@ -132,7 +132,7 @@ export class PrintComponent {
       for (let b = 0; b < a.length; b++) {
         //console.log("LOOOOOOOOOOOOOOP");
         //console.log(a[b].traceValue);
-        if (a[b].pinfo1Value != "" || a[b].pinfo2Value != "" || a[b].pinfo3Value != "" || a[b].pinfo4Value != "" || a[b].newInfoText ) {
+        if (a[b].pinfo1Value != "" || a[b].pinfo2Value != "" || a[b].pinfo3Value != "" || a[b].newInfoText ) {
           this.info = true;
         }
       }

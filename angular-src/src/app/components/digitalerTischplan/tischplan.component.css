@@ -251,7 +251,7 @@ body html .row .container-fluid .upload-col .outer-cards h3 {
 
 .wall1 {
   position: absolute;
-  top: 409px;
+  top: 396px;
   left: 400px;
   background-color: black;
   height: 15px;
@@ -261,7 +261,7 @@ body html .row .container-fluid .upload-col .outer-cards h3 {
 
 .wall2 {
   position: absolute;
-  top: 409px;
+  top: 396px;
   left: 0px;
   background-color: black;
   height: 15px;
@@ -271,7 +271,7 @@ body html .row .container-fluid .upload-col .outer-cards h3 {
 
 .wall3 {
   position: absolute;
-  top: 700px;
+  top: 720px;
   left: 0px;
   background-color: black;
   height: 15px;
@@ -281,7 +281,7 @@ body html .row .container-fluid .upload-col .outer-cards h3 {
 
 .wall4 {
   position: absolute;
-  top: 700px;
+  top: 720px;
   left: 409px;
   background-color: black;
   height: 15px;

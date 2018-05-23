@@ -200,9 +200,10 @@ module.exports = {
             console.log("imHausListeDataArrayConcat");
             console.log(imHausListeDataArrayConcat);
             imHausListeDataArrayConcatSplit = imHausListeDataArrayConcat.split(";");
+            let zimmerNummerSplitted = imHausListeDataArrayConcatSplit[2].split(" ");
         //console.log(imHausListeDataArrayConcatSplit);
         imHausListe.push({
-            "zimmernummer": imHausListeDataArrayConcatSplit[2],
+            "zimmernummer": zimmerNummerSplitted[0],
             "anreise": imHausListeDataArrayConcatSplit[0],
             "abreise": imHausListeDataArrayConcatSplit[1],
             "name1": imHausListeDataArrayConcatSplit[8] + " " + imHausListeDataArrayConcatSplit[5] + " " + imHausListeDataArrayConcatSplit[6],
@@ -211,7 +212,6 @@ module.exports = {
             "pinfo3": imHausListeDataArrayConcatSplit[49],
             "personenAnzahl": imHausListeDataArrayConcatSplit[74] + " / " + imHausListeDataArrayConcatSplit[77] + " / " + imHausListeDataArrayConcatSplit[78],
             "kategorie": imHausListeDataArrayConcatSplit[85],
-
         });
         }
         console.log(imHausListe);
