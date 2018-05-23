@@ -775,7 +775,7 @@ var RestaurantComponent = (function () {
         this.occupied.emit({ table: table, j: j });
     };
     RestaurantComponent.prototype.getStyle = function (j) {
-        if (j.pinfo1Value != "" && j.pinfo2Value != "" && j.pinfo3Value != "") {
+        if (j.pinfo1Value != "" || j.pinfo2Value != "" || j.pinfo3Value != "") {
             return "solid 3px red";
         }
         else {
