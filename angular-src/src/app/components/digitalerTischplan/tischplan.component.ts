@@ -267,54 +267,49 @@ export class TischplanComponent {
       .subscribe(tables => {
         if (tables === null) {
           return;
-        }
-        /*
-         } else {
-         //console.log("tables[3].tables");
-         //console.log(JSON.parse(tables[3].tables));
-         for (let x = 0; x < tables.length; x++){
-         //console.log("tables[x].department");
-         //console.log(tables[x].department);
+        } else {
+          //console.log("tables[3].tables");
+          //console.log(JSON.parse(tables[3].tables));
+          for (let x = 0; x < tables.length; x++) {
+            //console.log("tables[x].department");
+            //console.log(tables[x].department);
 
-         if (tables[x].department === "Restaurant") {
-         tables[x].tables.sort(function (a, b) {
-         //console.log(a.number);
-         //console.log(b.number);
-         if (Number(a.number) < Number(b.number))
-         return -1;
-         if (Number(a.number) > Number(b.number))
-         return 1;
-         return 0;
-         });
-
-         }
-
-         }
-         */
-        //console.log('sorted?:');
-        //console.log(sortedArray);
-        //console.log(tables[3].tables);
-        //console.log(sortedTablesWintergarten);
-        //console.log(testTables);
-        for (let a = 0; a < tables.length; a++) {
-          if (tables[a].department === "Restaurant") {
-            this.tablesRestaurant = tables[a].tables;
+            tables[x].tables.sort(function (a, b) {
+              //console.log(a.number);
+              //console.log(b.number);
+              if (a.number < b.number)
+                return -1;
+              if (a.number > b.number)
+                return 1;
+              return 0;
+            });
           }
+
+          //console.log('sorted?:');
+          //console.log(sortedArray);
+          //console.log(tables[3].tables);
+          //console.log(sortedTablesWintergarten);
+          //console.log(testTables);
+          for (let a = 0; a < tables.length; a++) {
+            if (tables[a].department === "Restaurant") {
+              this.tablesRestaurant = tables[a].tables;
+            }
+          }
+          //console.log(this.tablesPanorama);
+          //console.log(this.tablesWintergarten);
+          //console.log(this.tablesSonnbergZirbn);
+          //console.log(this.tablesRestaurant);
+          this.changeBgColorIfAnreise();
+          //}
+          this.tablesTempAbreise = tables;
+          this.tables = this.tablesRestaurant;
+          this.printComponent.formatAzListe(this.tables);
+          setTimeout(() => {
+            this.tableplanComponent.sumUpPersonenAnzahl();
+          }, 1000);
+          //console.log("this.tables");
+          //console.log(this.tables);
         }
-        //console.log(this.tablesPanorama);
-        //console.log(this.tablesWintergarten);
-        //console.log(this.tablesSonnbergZirbn);
-        //console.log(this.tablesRestaurant);
-        this.changeBgColorIfAnreise();
-      //}
-        this.tablesTempAbreise = tables;
-        this.tables = this.tablesRestaurant;
-        this.printComponent.formatAzListe(this.tables);
-        setTimeout(() => {
-          this.tableplanComponent.sumUpPersonenAnzahl();
-        }, 1000);
-        //console.log("this.tables");
-        //console.log(this.tables);
       });
   }
 }

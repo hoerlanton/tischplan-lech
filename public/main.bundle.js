@@ -2077,9 +2077,9 @@ var TableplanComponent = (function () {
         this.tischplanService.addTable(table).subscribe(function (response) {
             for (var a = 0; a < response[0].tables.length; a++) {
                 response[0].tables.sort(function (a, b) {
-                    if (Number(a.number) < Number(b.number))
+                    if (a.number < b.number)
                         return -1;
-                    if (Number(a.number) > Number(b.number))
+                    if (a.number > b.number)
                         return 1;
                     return 0;
                 });
@@ -2108,9 +2108,9 @@ var TableplanComponent = (function () {
         this.tischplanService.removeTable(table).subscribe(function (response) {
             for (var a = 0; a < response[0].tables.length; a++) {
                 response[0].tables.sort(function (a, b) {
-                    if (Number(a.number) < Number(b.number))
+                    if (a.number < b.number)
                         return -1;
-                    if (Number(a.number) > Number(b.number))
+                    if (a.number > b.number)
                         return 1;
                     return 0;
                 });
@@ -2571,53 +2571,47 @@ var TischplanComponent = (function () {
             if (tables === null) {
                 return;
             }
-            /*
-             } else {
-             //console.log("tables[3].tables");
-             //console.log(JSON.parse(tables[3].tables));
-             for (let x = 0; x < tables.length; x++){
-             //console.log("tables[x].department");
-             //console.log(tables[x].department);
-    
-             if (tables[x].department === "Restaurant") {
-             tables[x].tables.sort(function (a, b) {
-             //console.log(a.number);
-             //console.log(b.number);
-             if (Number(a.number) < Number(b.number))
-             return -1;
-             if (Number(a.number) > Number(b.number))
-             return 1;
-             return 0;
-             });
-    
-             }
-    
-             }
-             */
-            //console.log('sorted?:');
-            //console.log(sortedArray);
-            //console.log(tables[3].tables);
-            //console.log(sortedTablesWintergarten);
-            //console.log(testTables);
-            for (var a = 0; a < tables.length; a++) {
-                if (tables[a].department === "Restaurant") {
-                    _this.tablesRestaurant = tables[a].tables;
+            else {
+                //console.log("tables[3].tables");
+                //console.log(JSON.parse(tables[3].tables));
+                for (var x = 0; x < tables.length; x++) {
+                    //console.log("tables[x].department");
+                    //console.log(tables[x].department);
+                    tables[x].tables.sort(function (a, b) {
+                        //console.log(a.number);
+                        //console.log(b.number);
+                        if (a.number < b.number)
+                            return -1;
+                        if (a.number > b.number)
+                            return 1;
+                        return 0;
+                    });
                 }
+                //console.log('sorted?:');
+                //console.log(sortedArray);
+                //console.log(tables[3].tables);
+                //console.log(sortedTablesWintergarten);
+                //console.log(testTables);
+                for (var a = 0; a < tables.length; a++) {
+                    if (tables[a].department === "Restaurant") {
+                        _this.tablesRestaurant = tables[a].tables;
+                    }
+                }
+                //console.log(this.tablesPanorama);
+                //console.log(this.tablesWintergarten);
+                //console.log(this.tablesSonnbergZirbn);
+                //console.log(this.tablesRestaurant);
+                _this.changeBgColorIfAnreise();
+                //}
+                _this.tablesTempAbreise = tables;
+                _this.tables = _this.tablesRestaurant;
+                _this.printComponent.formatAzListe(_this.tables);
+                setTimeout(function () {
+                    _this.tableplanComponent.sumUpPersonenAnzahl();
+                }, 1000);
+                //console.log("this.tables");
+                //console.log(this.tables);
             }
-            //console.log(this.tablesPanorama);
-            //console.log(this.tablesWintergarten);
-            //console.log(this.tablesSonnbergZirbn);
-            //console.log(this.tablesRestaurant);
-            _this.changeBgColorIfAnreise();
-            //}
-            _this.tablesTempAbreise = tables;
-            _this.tables = _this.tablesRestaurant;
-            _this.printComponent.formatAzListe(_this.tables);
-            setTimeout(function () {
-                _this.tableplanComponent.sumUpPersonenAnzahl();
-            }, 1000);
-            //console.log("this.tables");
-            //console.log(this.tables);
         });
     };
     return TischplanComponent;

@@ -36,6 +36,7 @@ module.exports = {
                                 "width": "70",
                                 "height": "70"
                             }],
+                            $sort: {number: 1}
                         }
                     }
                 },
@@ -81,6 +82,7 @@ module.exports = {
                                     "width": "70",
                                     "height": "70"
                                 }],
+                                $sort: {number: 1}
                             }
                         }
                     },
@@ -126,6 +128,7 @@ module.exports = {
                                 "width": "80",
                                 "height": "60"
                             }],
+                            $sort: {number: 1}
                         }
                     }
                 },
@@ -172,6 +175,7 @@ module.exports = {
                                 "width": "80",
                                 "height": "60"
                             }],
+                            $sort: {number: 1}
                         }
                     }
                 },
@@ -218,6 +222,7 @@ module.exports = {
                                 "width": "80",
                                 "height": "60"
                             }],
+                            $sort: {number: 1}
                         }
                     }
                 },
@@ -264,6 +269,7 @@ module.exports = {
                                 "width": "80",
                                 "height": "60"
                             }],
+                            $sort: {number: 1}
                         }
                     }
                 },
@@ -310,6 +316,7 @@ module.exports = {
                                 "width": "100",
                                 "height": "50"
                             }],
+                            $sort: {number: 1}
                         }
                     }
                 },
@@ -356,6 +363,7 @@ module.exports = {
                                 "width": "100",
                                 "height": "50"
                             }],
+                            $sort: {number: 1}
                         }
                     }
                 },
@@ -402,6 +410,7 @@ module.exports = {
                                 "width": "100",
                                 "height": "80"
                             }],
+                            $sort: {number: 1}
                         }
                     }
                 },
@@ -448,6 +457,7 @@ module.exports = {
                                 "width": "100",
                                 "height": "50"
                             }],
+                            $sort: {number: 1}
                         }
                     }
                 },
@@ -494,6 +504,7 @@ module.exports = {
                                 "width": "100",
                                 "height": "80"
                             }],
+                            $sort: {number: 1}
                         }
                     }
                 },
@@ -540,6 +551,7 @@ module.exports = {
                                 "width": "100",
                                 "height": "80"
                             }],
+                            $sort: {number: 1}
                         }
                     }
                 },
@@ -586,6 +598,7 @@ module.exports = {
                                 "width": "90",
                                 "height": "70"
                             }],
+                            $sort: {number: 1}
                         }
                     }
                 },
@@ -632,6 +645,7 @@ module.exports = {
                                 "width": "90",
                                 "height": "110"
                             }],
+                            $sort: {number: 1}
                         }
                     }
                 },
@@ -678,6 +692,7 @@ module.exports = {
                                 "width": "90",
                                 "height": "110"
                             }],
+                            $sort: {number: 1}
                         }
                     }
                 },
@@ -724,6 +739,7 @@ module.exports = {
                                 "width": "100",
                                 "height": "50"
                             }],
+                            $sort: {number: 1}
                         }
                     }
                 },
@@ -770,6 +786,7 @@ module.exports = {
                                 "width": "100",
                                 "height": "50"
                             }],
+                            $sort: {number: 1}
                         }
                     }
                 },
@@ -816,6 +833,7 @@ module.exports = {
                                 "width": "100",
                                 "height": "80"
                             }],
+                            $sort: {number: 1}
                         }
                     }
                 },
@@ -862,6 +880,7 @@ module.exports = {
                                 "width": "100",
                                 "height": "50"
                             }],
+                            $sort: {number: 1}
                         }
                     }
                 },
@@ -908,6 +927,7 @@ module.exports = {
                                 "width": "100",
                                 "height": "80"
                             }],
+                            $sort: {number: 1}
                         }
                     }
                 },
@@ -954,6 +974,7 @@ module.exports = {
                                 "width": "100",
                                 "height": "80"
                             }],
+                            $sort: {number: 1}
                         }
                     }
                 },
@@ -1000,6 +1021,7 @@ module.exports = {
                                 "width": "90",
                                 "height": "70"
                             }],
+                            $sort: {number: 1}
                         }
                     }
                 },
@@ -1046,6 +1068,7 @@ module.exports = {
                                 "width": "90",
                                 "height": "110"
                             }],
+                            $sort: {number: 1}
                         }
                     }
                 },
@@ -1092,6 +1115,7 @@ module.exports = {
                                 "width": "90",
                                 "height": "110"
                             }],
+                            $sort: {number: 1}
                         }
                     }
                 },

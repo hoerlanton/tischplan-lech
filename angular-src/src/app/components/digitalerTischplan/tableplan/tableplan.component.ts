@@ -57,9 +57,9 @@ export class TableplanComponent implements AfterViewInit {
 
       for (let a = 0; a < response[0].tables.length; a++) {
         response[0].tables.sort(function (a, b) {
-          if (Number(a.number) < Number(b.number))
+          if (a.number < b.number)
             return -1;
-          if (Number(a.number) > Number(b.number))
+          if (a.number > b.number)
             return 1;
           return 0;
         });
@@ -90,9 +90,9 @@ export class TableplanComponent implements AfterViewInit {
 
       for (let a = 0; a < response[0].tables.length; a++) {
         response[0].tables.sort(function (a, b) {
-          if (Number(a.number) < Number(b.number))
+          if (a.number < b.number)
             return -1;
-          if (Number(a.number) > Number(b.number))
+          if (a.number > b.number)
             return 1;
           return 0;
         });
