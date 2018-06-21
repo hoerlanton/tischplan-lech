@@ -33,6 +33,18 @@ export class PrintComponent {
   info: boolean;
   tableTemp: any[] = [];
   object: any;
+  sumOfGuests: any[] = [];
+  sumErwRestaurant: number;
+  sumKi1Restaurant: number;
+  sumKi2Restaurant: number;
+  sumOfGuestsHP: any[] = [];
+  sumOfGuestsF: any[] = [];
+  sumErwRestaurantHP: number;
+  sumKi1RestaurantHP: number;
+  sumKi2RestaurantHP: number;
+  sumErwRestaurantF: number;
+  sumKi1RestaurantF: number;
+  sumKi2RestaurantF: number;
 
   ngOnInit() {
   }
@@ -48,6 +60,18 @@ export class PrintComponent {
     this.tableNumbers = [];
     this.uniqueTables = [];
     this.tableTemp = [];
+    this.sumOfGuests = [0,0,0];
+    this.sumErwRestaurant = 0;
+    this.sumKi1Restaurant = 0;
+    this.sumKi2Restaurant = 0;
+    this.sumOfGuestsF = [0,0,0];
+    this.sumErwRestaurantF = 0;
+    this.sumKi1RestaurantF = 0;
+    this.sumKi2RestaurantF = 0;
+    this.sumOfGuestsHP = [0,0,0];
+    this.sumErwRestaurantHP = 0;
+    this.sumKi1RestaurantHP = 0;
+    this.sumKi2RestaurantHP = 0;
 
     console.log("this.tables");
     console.log(this.tables);
@@ -67,8 +91,45 @@ export class PrintComponent {
             border: this.tables[i].border,
           };
           this.object = Object.assign(this.tables[i].groups[j], tempObject);
-          //console.log("this.object");
-          //console.log(this.object);
+
+           this.sumOfGuests = this.tables[i].groups[j].personenAnzahlValue.match(/\d+/g);
+           if (this.tables[i].groups[j].kategorieValue.indexOf("H") != -1) {
+             this.sumOfGuestsHP = this.tables[i].groups[j].personenAnzahlValue.match(/\d+/g);
+           } else if (this.tables[i].groups[j].kategorieValue.indexOf("F") != -1) {
+             this.sumOfGuestsF = this.tables[i].groups[j].personenAnzahlValue.match(/\d+/g);
+           }
+
+          if (this.sumOfGuestsHP != null) {
+            //console.log(erwKi);
+            this.sumErwRestaurantHP += Number(this.sumOfGuestsHP[0]);
+            this.sumKi1RestaurantHP += Number(this.sumOfGuestsHP[1]);
+            this.sumKi2RestaurantHP += Number(this.sumOfGuestsHP[2]);
+
+            //console.log("this.object");
+            //console.log(this.object);
+            this.sumOfGuestsHP = [0,0,0];
+          }
+
+          if (this.sumOfGuestsF != null) {
+            console.log(this.sumOfGuestsF);
+            this.sumErwRestaurantF += Number(this.sumOfGuestsF[0]);
+            this.sumKi1RestaurantF += Number(this.sumOfGuestsF[1]);
+            this.sumKi2RestaurantF += Number(this.sumOfGuestsF[2]);
+
+            //console.log("this.object");
+            //console.log(this.object);
+            this.sumOfGuestsF = [0,0,0];
+          }
+
+          if (this.sumOfGuests != null) {
+            //console.log(erwKi);
+            this.sumErwRestaurant += Number(this.sumOfGuests[0]);
+            this.sumKi1Restaurant += Number(this.sumOfGuests[1]);
+            this.sumKi2Restaurant += Number(this.sumOfGuests[2]);
+
+            //console.log("this.object");
+            //console.log(this.object);
+          }
           this.tableTemp.push(this.object);
         }
       }
@@ -120,7 +181,6 @@ export class PrintComponent {
     console.log("this.tablesOccupied" + this.tablesOccupied);
 
     //console.log(tables);
-
   }
 
   getStyle(a) {

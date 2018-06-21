@@ -40,6 +40,13 @@
       {{dateGeneratedListe}}
     </tr>
     <tr>
+      <p>Die Zahlen getrennt durch / in der Pers Spalte stehen für folgende Werte in dieser Reihenfolge: Anzahl Erwachsene / Anzahl Kinder(K3) 8-11 Jahre / Anzahl Kinder(K4) 12-16 Jahre<br>
+      <p>Anzahl der Tische besetzt: {{uniqueTables.length}}<br>
+        Anzahl der Personen: {{sumErwRestaurant}} / {{sumKi1Restaurant}} / {{sumKi2Restaurant}}<br>
+        Anzahl der Halbpensionen: {{sumErwRestaurantHP}} / {{sumKi1RestaurantHP}} / {{sumKi2RestaurantHP}}<br>
+        Anzahl der Gäste mit Frühstück: {{sumErwRestaurantF}} / {{sumKi1RestaurantF}} / {{sumKi2RestaurantF}}</p>
+    </tr>
+    <tr>
       Restaurant
     </tr>
       <tr style="border: solid 1px black;">
@@ -88,6 +95,8 @@
   </div>
 </div>
 <div id="printSectionId2" class="section2">
+  <p>Die Zahlen getrennt durch / stehen für folgende Werte in dieser Reihenfolge: Anzahl Erwachsene / Anzahl Kinder(K3) 8-11 Jahre / Anzahl Kinder(K4) 12-16 Jahre<br>
+  <b style="color: #0a7a74; font-size: 30pt">•</b> Anreisen      <b style="color: grey; font-size: 30pt">•</b> Tisch ist Besetzt       <b style="color: red; font-size: 30pt">•</b> Sonderinformationen       <b style="color: beige; font-size: 30pt">•</b> Tisch ist frei</p>
   <div class="row" style=" border-left: 5px solid #0a7a74; border-right: 5px solid #0a7a74;">
     <div *ngIf="showRestaurantBool">
       <div *ngFor="let tableRestaurant of tablesRestaurant; let j = index;">
@@ -107,6 +116,10 @@
       <div class="wall4"></div>
     </div>
   </div>
+  <p style="position: relative; top: 850px; left: 20px">Anzahl der Tische besetzt: {{uniqueTables.length}}<br>
+    Anzahl der Personen: {{sumErwRestaurant}} / {{sumKi1Restaurant}} / {{sumKi2Restaurant}}<br>
+    Anzahl der Halbpensionen: {{sumErwRestaurantHP}} / {{sumKi1RestaurantHP}} / {{sumKi2RestaurantHP}}<br>
+    Anzahl der Gäste mit Frühstück: {{sumErwRestaurantF}} / {{sumKi1RestaurantF}} / {{sumKi2RestaurantF}}</p>
 </div>
 
 
